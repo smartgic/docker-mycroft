@@ -1,0 +1,31 @@
+FROM smartgic/mycroft-base:dev
+
+MAINTAINER Gaëtan Trellu <gaetan.trellu@smartgic.io>
+
+LABEL vendor=Smartgic.io \
+      io.smartgic.image-name="mycroft-skills" \
+      io.smartgic.is-beta="no" \
+      io.smartgic.is-production="no" \
+      io.smartgic.version="dev" \
+      io.smartgic.release-date="2021-01-01"
+
+WORKDIR /home/mycroft/core
+
+USER root
+
+RUN apt-get update && \
+    apt-get install libffi-dev libssl-dev sudo -y && \
+    apt-get clean && \
+    echo "mycroft ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/010_mycroft-nopasswd && \
+    chmod 440 /etc/sudoers.d/010_mycroft-nopasswd && \
+    mkdir -p /opt/mycroft/skills && \
+    chown mycroft:mycroft -R /opt/mycroft
+
+USER mycroft
+
+RUN ln -s /opt/mycroft/skills /home/mycroft/core/skills && \
+    pip install -r /home/mycroft/core/requirements/extra-mark1.txt && \
+    mkdir -p /home/mycroft/.config/mycroft && \
+    rm -rf ~/.cache
+
+ENTRYPOINT ["python", "-m", "mycroft.skills"]
