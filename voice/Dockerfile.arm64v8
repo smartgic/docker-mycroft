@@ -1,0 +1,35 @@
+FROM smartgic/mycroft-base:arm64v8-dev
+
+MAINTAINER Gaëtan Trellu <gaetan.trellu@smartgic.io>
+
+LABEL vendor=Smartgic.io \
+      io.smartgic.image-name="mycroft-voice" \
+      io.smartgic.is-beta="no" \
+      io.smartgic.is-production="no" \
+      io.smartgic.version="dev" \
+      io.smartgic.release-date="2021-01-01"
+
+ARG XDG
+
+ENV DEBIAN_FRONTEND noninteractive
+
+WORKDIR /home/mycroft/core
+
+USER root
+
+RUN apt-get update && \
+    apt-get install -y alsa-utils pulseaudio-utils flac libasound2-plugins && \
+    apt-get -y autoremove && \
+    apt-get clean && \
+    usermod -a -G audio mycroft
+
+COPY files/client.conf /etc/pulse/client.conf
+
+RUN sed -i "s|REPLACEME|${XDG}|g" /etc/pulse/client.conf
+
+USER mycroft
+
+RUN pip3 install -r /home/mycroft/core/requirements/extra-stt.txt && \
+    rm -rf ~/.cache
+
+ENTRYPOINT ["python", "-m", "mycroft.client.speech"]
