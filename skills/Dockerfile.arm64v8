@@ -1,4 +1,4 @@
-FROM smartgic/mycroft-base:dev
+FROM smartgic/mycroft-base:arm64v8-dev
 
 MAINTAINER Gaëtan Trellu <gaetan.trellu@smartgic.io>
 
