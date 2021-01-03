@@ -1,0 +1,31 @@
+version: "3.9"
+
+volumes:
+  mycroft_venv:
+    name: mycroft_venv
+    driver: local
+  mycroft_ipc:
+    name: mycroft_ipc
+    driver: local
+  mycroft_skills:
+    name: mycroft_skills
+    driver: local
+  mycroft_skills_repo:
+    name: mycroft_skills_repo
+    driver: local
+  mycroft_skills_config:
+    name: mycroft_skills_config
+    driver: local
+  
+services:
+  mycroft_bus:
+    container_name: mycroft_bus
+    hostname: mycroft_bus
+    restart: unless-stopped
+    image: smartgic/mycroft_bus:${ARCH}-${VERSION}
+    network_mode: host
+    ports:
+      - 8181:8181/tcp
+    volumes:
+      - ~/mycroft-config:/home/mycroft/.mycroft
+      - mycroft_ipc:/tmp/mycroft/ipc

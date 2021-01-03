@@ -20,7 +20,8 @@ USER root
 RUN apt-get update && \
     apt-get install -y alsa-utils pulseaudio-utils flac libasound2-plugins && \
     apt-get -y autoremove && \
-    apt-get clean
+    apt-get clean && \
+    usermod -a -G audio mycroft
 
 COPY files/client.conf /etc/pulse/client.conf
 

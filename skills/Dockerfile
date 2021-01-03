@@ -19,7 +19,8 @@ RUN apt-get update && \
     echo "mycroft ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/010_mycroft-nopasswd && \
     chmod 440 /etc/sudoers.d/010_mycroft-nopasswd && \
     mkdir -p /opt/mycroft/skills && \
-    chown mycroft:mycroft -R /opt/mycroft
+    chown mycroft:mycroft -R /opt/mycroft && \
+    usermod -a -G audio mycroft
 
 USER mycroft
 

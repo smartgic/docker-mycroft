@@ -20,7 +20,8 @@ RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key
     apt-get update && \
     apt-get install -y alsa-utils mpg123 pulseaudio-utils mimic && \
     apt-get -y autoremove && \
-    apt-get clean
+    apt-get clean && \
+    usermod -a -G audio mycroft
 
 USER mycroft
 
