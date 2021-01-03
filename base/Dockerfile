@@ -13,8 +13,8 @@ ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
 ENV VIRTUAL_ENV /opt/mycroft-venv
 ENV MYCROFT_DIR /home/mycroft/core
+ENV BRANCH master
 
-ARG BRANCH
 ARG PYTHON_VERSION="python3 -c 'from sys import version_info as i; print(f\"{i[0]}.{i[1]}\")'"
 
 RUN apt-get update && \
