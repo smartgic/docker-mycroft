@@ -89,7 +89,7 @@ services:
     container_name: mycroft_skills
     hostname: mycroft_skills
     restart: unless-stopped
-    image: smartgic/mycroft-skilss:${ARCH}-${VERSION}
+    image: smartgic/mycroft-skills:${ARCH}-${VERSION}
     network_mode: host
     devices:
       - /dev/snd
