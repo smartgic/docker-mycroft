@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.6"
 
 volumes:
   mycroft_venv:
@@ -22,10 +22,87 @@ services:
     container_name: mycroft_bus
     hostname: mycroft_bus
     restart: unless-stopped
-    image: smartgic/mycroft_bus:${ARCH}-${VERSION}
+    image: smartgic/mycroft-bus:${ARCH}-${VERSION}
     network_mode: host
-    ports:
-      - 8181:8181/tcp
     volumes:
       - ~/mycroft-config:/home/mycroft/.mycroft
       - mycroft_ipc:/tmp/mycroft/ipc
+
+  mycroft_enclosure:
+    container_name: mycroft_enclosure
+    hostname: mycroft_enclosure
+    restart: unless-stopped
+    image: smartgic/mycroft-enclosure:${ARCH}-${VERSION}
+    network_mode: host
+    volumes:
+      - ~/mycroft-config:/home/mycroft/.mycroft
+      - mycroft_ipc:/tmp/mycroft/ipc
+
+  mycroft_cli:
+    container_name: mycroft_cli
+    hostname: mycroft_cli
+    restart: unless-stopped
+    image: smartgic/mycroft-cli:${ARCH}-${VERSION}
+    network_mode: host
+    volumes:
+      - ~/mycroft-config:/home/mycroft/.mycroft
+      - mycroft_ipc:/tmp/mycroft/ipc
+      - mycroft_venv:/opt/mycroft-venv
+      - mycroft_skills_repo:/opt/mycroft
+
+  mycroft_audio:
+    container_name: mycroft_audio
+    hostname: mycroft_audio
+    restart: unless-stopped
+    image: smartgic/mycroft-audio:${ARCH}-${VERSION}
+    network_mode: host
+    devices:
+      - /dev/snd
+    environment:
+      PULSE_SERVER: unix:${XDG_RUNTIME_DIR}/pulse/native
+      PULSE_COOKIE: /home/mycroft/.config/pulse/cookie
+    volumes:
+      - ~/mycroft-config:/home/mycroft/.mycroft
+      - mycroft_ipc:/tmp/mycroft/ipc
+      - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie
+      - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse
+
+  mycroft_voice:
+    container_name: mycroft_voice
+    hostname: mycroft_voice
+    restart: unless-stopped
+    image: smartgic/mycroft-voice:${ARCH}-${VERSION}
+    network_mode: host
+    devices:
+      - /dev/snd
+    environment:
+      PULSE_SERVER: unix:${XDG_RUNTIME_DIR}/pulse/native
+      PULSE_COOKIE: /home/mycroft/.config/pulse/cookie
+    volumes:
+      - ~/mycroft-config:/home/mycroft/.mycroft
+      - ~/mycroft-web-cache:/var/tmp
+      - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie
+      - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse
+      - mycroft_ipc:/tmp/mycroft/ipc
+
+  mycroft_skills:
+    container_name: mycroft_skills
+    hostname: mycroft_skills
+    restart: unless-stopped
+    image: smartgic/mycroft-skilss:${ARCH}-${VERSION}
+    network_mode: host
+    devices:
+      - /dev/snd
+    environment:
+      PULSE_SERVER: unix:${XDG_RUNTIME_DIR}/pulse/native
+      PULSE_COOKIE: /home/mycroft/.config/pulse/cookie
+    volumes:
+      - ~/mycroft-config:/home/mycroft/.mycroft
+      - ~/mycroft-web-cache:/var/tmp
+      - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie
+      - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse
+      - mycroft_ipc:/tmp/mycroft/ipc
+      - mycroft_venv:/opt/mycroft-venv
+      - mycroft_skills_config:/home/mycroft/.config/mycroft
+      - mycroft_skills_repo:/opt/mycroft
+      - mycroft_skills:/opt/mycroft/skills
