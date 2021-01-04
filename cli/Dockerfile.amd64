@@ -12,11 +12,12 @@ LABEL vendor=Smartgic.io \
 WORKDIR /home/mycroft/core
 
 ENV PATH $VIRTUAL_ENV/bin/:$PATH:/home/mycroft/core/bin
+ENV EDITOR vim
 
 USER root
 
 RUN apt-get update && \
-    apt-get install jq -y && \
+    apt-get install jq vim -y && \
     mkdir -p /opt/mycroft && \
     chown mycroft:mycroft /opt/mycroft
 
