@@ -37,6 +37,8 @@ services:
     volumes:
       - ~/mycroft-config:/home/mycroft/.mycroft
       - mycroft_ipc:/tmp/mycroft/ipc
+    depends_on:
+      - mycroft_bus
 
   mycroft_cli:
     container_name: mycroft_cli
@@ -50,6 +52,8 @@ services:
       - mycroft_venv:/opt/mycroft-venv
       - mycroft_skills_repo:/opt/mycroft
       - mycroft_skills:/opt/mycroft/skills
+    depends_on:
+      - mycroft_bus
 
   mycroft_audio:
     container_name: mycroft_audio
@@ -67,6 +71,8 @@ services:
       - mycroft_ipc:/tmp/mycroft/ipc
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse
+    depends_on:
+      - mycroft_bus
 
   mycroft_voice:
     container_name: mycroft_voice
@@ -85,6 +91,9 @@ services:
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse
       - mycroft_ipc:/tmp/mycroft/ipc
+    depends_on:
+      - mycroft_bus
+      - mycroft_audio
 
   mycroft_skills:
     container_name: mycroft_skills
@@ -107,3 +116,5 @@ services:
       - mycroft_skills_config:/home/mycroft/.config/mycroft
       - mycroft_skills_repo:/opt/mycroft
       - mycroft_skills:/opt/mycroft/skills
+    depends_on:
+      - mycroft_bus
