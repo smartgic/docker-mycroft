@@ -24,7 +24,7 @@ Options:
     -t      Configures the time a request to the Docker daemon is allowed to hang, default to 120
     -a      CPU architecture, default from "arch" command
     -v      Mycroft core version to use, default is "dev", "master" is avaiable too
-    -x      Specify which XDG_RUNTIME_DIR to use, default is "$XDG_RUNTIME_DIR"
+    -x      Specify which XDG_RUNTIME_DIR to use, default is "/run/user/1000" but could be $XDG_RUNTIME_DIR if defined
     -u      Execute this script as a simple user, make sure your user is part of the "docker" group
     '
     exit
@@ -94,7 +94,7 @@ else
 fi
 
 if [ -z $xdg ]; then
-    export XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
+    export XDG_RUNTIME_DIR=/run/user/1000
 else
     export XDG_RUNTIME_DIR="$xdg"
 fi
