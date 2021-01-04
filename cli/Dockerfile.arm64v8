@@ -15,7 +15,9 @@ ENV PATH $VIRTUAL_ENV/bin/:$PATH:/home/mycroft/core/bin
 
 USER root
 
-RUN mkdir -p /opt/mycroft && \
+RUN apt-get update && \
+    apt-get install jq -y && \
+    mkdir -p /opt/mycroft && \
     chown mycroft:mycroft /opt/mycroft
 
 USER mycroft
