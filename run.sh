@@ -46,7 +46,7 @@ done
 # This script requires super user privileges, root or sudo are required
 # to pursuit the execution of this script except if the user specified
 # the -u option.
-if [ ! -z $user ]: then
+if [ ! -z $user ]; then
     if ((EUID != 0)); then
         echo 'root or sudo required for script $(basename $0)'
         exit 1
