@@ -44,7 +44,8 @@ done
 # This script requires super user privileges, root or sudo are required
 # to pursuit the execution of this script.
 if ((EUID != 0)); then
-    echo "root or sudo required for script ( $(basename $0) )"
+    echo 'root or sudo required for script $(basename $0)'
+    echo 'An other option could be to add your user to the "docker" group using the "usermod" command'
     exit 1
 fi
 
