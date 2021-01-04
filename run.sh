@@ -25,28 +25,32 @@ Options:
     -a      CPU architecture, default from "arch" command
     -v      Mycroft core version to use, default is "dev", "master" is avaiable too
     -x      Specify which XDG_RUNTIME_DIR to use, default is "$XDG_RUNTIME_DIR"
+    -u      Execute this script as a simple user, make sure your user is part of the "docker" group
     '
     exit
 }
 
 # Check the arguments passed to the script.
-while getopts t:a:v:x:h flag
+while getopts t:a:v:x:uh flag
 do
     case "${flag}" in
         t) timeout=${OPTARG};;
         a) arch=${OPTARG};;
         v) version=${OPTARG};;
         x) xdg=${OPTARG};;
+        u) user="true";;
         h) help;;
     esac
 done
 
 # This script requires super user privileges, root or sudo are required
-# to pursuit the execution of this script.
-if ((EUID != 0)); then
-    echo 'root or sudo required for script $(basename $0)'
-    echo 'An other option could be to add your user to the "docker" group using the "usermod" command'
-    exit 1
+# to pursuit the execution of this script except if the user specified
+# the -u option.
+if [ ! -z $user ]: then
+    if ((EUID != 0)); then
+        echo 'root or sudo required for script $(basename $0)'
+        exit 1
+    fi
 fi
 
 # Function that checks if a binary command is available, if not
