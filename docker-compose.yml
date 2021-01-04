@@ -49,6 +49,7 @@ services:
       - mycroft_ipc:/tmp/mycroft/ipc
       - mycroft_venv:/opt/mycroft-venv
       - mycroft_skills_repo:/opt/mycroft
+      - mycroft_skills:/opt/mycroft/skills
 
   mycroft_audio:
     container_name: mycroft_audio
