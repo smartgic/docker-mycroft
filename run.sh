@@ -14,27 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# This script requires super user privileges, root or sudo are required
-# to pursuit the execution of this script.
-if ((EUID != 0)); then
-    if [[ -t 1 ]]; then
-        sudo "$0" "$@"
-    else
-        echo "root or sudo required for script ( $(basename $0) )"
-        exit 1
-    fi
-fi
-
-# Function that checks if a binary command is available, if not
-# then the script exit.
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
-    if [[ $? -ne 0 ]]; then
-        echo "$1 but it's not installed, abort..."
-        exit 1
-    fi
-}
-
 # Function to display a help message.
 help() {
     echo '
@@ -61,6 +40,23 @@ do
         h) help;;
     esac
 done
+
+# This script requires super user privileges, root or sudo are required
+# to pursuit the execution of this script.
+if ((EUID != 0)); then
+    echo "root or sudo required for script ( $(basename $0) )"
+    exit 1
+fi
+
+# Function that checks if a binary command is available, if not
+# then the script exit.
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        echo "$1 but it's not installed, abort..."
+        exit 1
+    fi
+}
 
 # Few commands are required to continue such as docker and docker-compose
 # The check if perform whith the command_exists function from above.
