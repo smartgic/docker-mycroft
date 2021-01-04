@@ -69,8 +69,8 @@ services:
     volumes:
       - ~/mycroft-config:/home/mycroft/.mycroft
       - mycroft_ipc:/tmp/mycroft/ipc
-      - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie
-      - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse
+      - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
+      - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
     depends_on:
       - mycroft_bus
 
@@ -88,8 +88,8 @@ services:
     volumes:
       - ~/mycroft-config:/home/mycroft/.mycroft
       - ~/mycroft-web-cache:/var/tmp
-      - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie
-      - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse
+      - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
+      - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
       - mycroft_ipc:/tmp/mycroft/ipc
     depends_on:
       - mycroft_bus
@@ -109,8 +109,8 @@ services:
     volumes:
       - ~/mycroft-config:/home/mycroft/.mycroft
       - ~/mycroft-web-cache:/var/tmp
-      - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie
-      - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse
+      - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
+      - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
       - mycroft_ipc:/tmp/mycroft/ipc
       - mycroft_venv:/opt/mycroft-venv
       - mycroft_skills_config:/home/mycroft/.config/mycroft
