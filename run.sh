@@ -45,16 +45,19 @@ Options:
     -t      Configures the time a request to the Docker daemon is allowed to hang, default to 120
     -a      CPU architecture, default from "arch" command
     -v      Mycroft core version to use, default is "dev", "master" is avaiable too
+    -x      Specify which XDG_RUNTIME_DIR to use, default is "$XDG_RUNTIME_DIR"
     '
+    exit
 }
 
 # Check the arguments passed to the script.
-while getopts t:a:v:h flag
+while getopts t:a:v:x:h flag
 do
     case "${flag}" in
         t) timeout=${OPTARG};;
         a) arch=${OPTARG};;
         v) version=${OPTARG};;
+        x) xdg=${OPTARG};;
         h) help;;
     esac
 done
@@ -87,6 +90,12 @@ if [ -z $version ]; then
     export VERSION="dev"
 else
     export VERSION="$version"
+fi
+
+if [ -z $xdg ]; then
+    export XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
+else
+    export XDG_RUNTIME_DIR="$xdg"
 fi
 
 # Execute docker-compose using the docker-compose.yml file from the
