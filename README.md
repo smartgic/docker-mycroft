@@ -63,7 +63,7 @@ $ cd docker-mycroft
 $ COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR ARCH=arm64v8 VERSION=dev docker-compose up -d
 ```
 
-Or using the `run.sh`, execute the script `-h` to display the help message.
+Or using the `run.sh`, execute the script with the `-h` argument to display the help message.
 
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
@@ -86,9 +86,11 @@ $ sudo docker run -d \
   -v mycroft_skills_repo:/opt/mycroft \
   -v ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse \
   -v ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie \
+  -v /sys:/sys \
   --device /dev/snd \
-  --device /dev/gpiomem \
+  --device /dev/gpiomem \ # For Raspberry Pi GPIO
   --group-add $(getent group audio | cut -d: -f3) \
+  --group-add $(getent group gpio | cut -d: -f3) \ # For Raspberry Pi GPIO
   --env PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
   --env PULSE_COOKIE=/home/mycroft/.config/pulse/cookie \
   --network host \
