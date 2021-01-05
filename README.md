@@ -49,13 +49,16 @@ To allow data persistance, Docker volumes are required which will avoid to re-pa
 `dev` is a nightly build based on the latest commits applied to the `dev` branch and `master` is the latest stable version.
 
 
-## How to use these images
+## Requirements
 
 Docker is of course required and `docker-compose` is a nice to have to simplify the whole process.
 
-`docker-compose.yml` file provides an easy way to provision the Docker volumes and containers with the required configuration for each of them. The `run.sh` script is a wrapper for `docker-compose` with variables encapsulation.
-
 **PulseAudio is a requirement and has to be up and running on the host to expose a socket and allow the containers to use microphone and speakers.**
+
+
+## How to use these images
+
+`docker-compose.yml` file provides an easy way to provision the Docker volumes and containers with the required configuration for each of them. The `run.sh` script is a wrapper for `docker-compose` with variables encapsulation.
 
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
@@ -123,6 +126,7 @@ $ mycroft-cli-client
 ```
 
 When the containers start, all the requirements and skills will be installed. This could takes some time depending the hardware and Mycroft will not be ready until this process has finished.
+
 
 ### Skills management
 
