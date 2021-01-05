@@ -1,8 +1,7 @@
 FROM smartgic/mycroft-base:arm32v7-dev
 
-MAINTAINER Gaëtan Trellu <gaetan.trellu@smartgic.io>
-
 LABEL vendor=Smartgic.io \
+    io.smartgic.maintainer="Gaëtan Trellu <gaetan.trellu@smartgic.io>" \
     io.smartgic.image-name="mycroft-cli" \
     io.smartgic.is-beta="no" \
     io.smartgic.is-production="no" \
