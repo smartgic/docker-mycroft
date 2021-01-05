@@ -1,9 +1,6 @@
 version: "3.6"
 
 volumes:
-  mycroft_venv:
-    name: mycroft_venv
-    driver: local
   mycroft_ipc:
     name: mycroft_ipc
     driver: local
@@ -15,6 +12,9 @@ volumes:
     driver: local
   mycroft_skills_config:
     name: mycroft_skills_config
+    driver: local
+  mycroft_skills_venv:
+    name: mycroft_venv
     driver: local
   
 services:
@@ -49,7 +49,7 @@ services:
     volumes:
       - ~/mycroft-config:/home/mycroft/.mycroft
       - mycroft_ipc:/tmp/mycroft/ipc
-      - mycroft_venv:/opt/mycroft-venv
+      - mycroft_skills_venv:/opt/mycroft-venv
       - mycroft_skills_repo:/opt/mycroft
       - mycroft_skills:/opt/mycroft/skills
     depends_on:
@@ -113,7 +113,7 @@ services:
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
       - mycroft_ipc:/tmp/mycroft/ipc
-      - mycroft_venv:/opt/mycroft-venv
+      - mycroft_skills_venv:/opt/mycroft-venv
       - mycroft_skills_config:/home/mycroft/.config/mycroft
       - mycroft_skills_repo:/opt/mycroft
       - mycroft_skills:/opt/mycroft/skills
