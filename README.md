@@ -55,7 +55,7 @@ Docker is of course required and `docker-compose` is a nice to have to simplify 
 
 `docker-compose.yml` file provides an easy way to provision the Docker volumes and containers with the required configuration for each of them. The `run.sh` script is a wrapper for `docker-compose` with variables encapsulation.
 
-PulseAudio is a requirement and has to be up and running on the host and expose the a socket to allow the containers to use microphone and speakers.
+**PulseAudio is a requirement and has to be up and running on the host to expose a socket and allow the containers to use microphone and speakers.**
 
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
@@ -73,7 +73,7 @@ $ sudo run.sh -a arm64v8 -v dev
 
 The `-u` option from `run.sh` will allows you to execute the script without privileges, the only requirement will be to add your user to the `docker` group then logout and login.
 
-Without `docker-compose` the container creation could be tedious *(example of `mycroft_skills` container)*:
+Without `docker-compose` the container creation could be tedious and repetitive, *(example of `mycroft_skills` container)*:
 
 ```bash
 $ sudo docker run -d \
@@ -100,9 +100,9 @@ $ sudo docker run -d \
 
 ### Pairing
 
-If your audio is configured correctly, you should hear your Mycroft instance giving you a pairing code that you should use at [https://home.mycroft.ai](https://home.mycroft.ai)
+If your audio is configured correctly, you should hear your Mycroft instance giving you a pairing code that you should use at [https://home.mycroft.ai](https://home.mycroft.ai).
 
-If you don't have audio set up, you can see the pairing code by examining the logs:
+If you don't have audio set up, you can retrieve the pairing code from logs `mycroft_skills` container:
 
 ```bash
 $ sudo docker logs -f mycroft_skills | grep -i "pairing code:"
@@ -141,5 +141,5 @@ $ msm install https://github.com/smartgic/mycroft-wakeword-led-gpio-skill.git
 * [Mycroft AI documentation](https://mycroft-ai.gitbook.io/docs)
 * [Mycroft AI community](https://community.mycroft.ai)
 * [Contribute to Mycroft AI](https://mycroft.ai/contribute)
-* [Report Mycroft AI bugs](https://github.com/MycroftAI/mycroft-core/issues)
+* [Report Mycroft AI core bugs](https://github.com/MycroftAI/mycroft-core/issues)
 * [Report bugs related to these Docker images](https://github.com/smartgic/docker-mycroft/issues)
