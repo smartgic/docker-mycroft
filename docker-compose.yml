@@ -103,6 +103,7 @@ services:
     network_mode: host
     devices:
       - /dev/snd
+      - /dev/gpiomem
     environment:
       PULSE_SERVER: unix:${XDG_RUNTIME_DIR}/pulse/native
       PULSE_COOKIE: /home/mycroft/.config/pulse/cookie
@@ -116,5 +117,6 @@ services:
       - mycroft_skills_config:/home/mycroft/.config/mycroft
       - mycroft_skills_repo:/opt/mycroft
       - mycroft_skills:/opt/mycroft/skills
+      - /sys:/sys
     depends_on:
       - mycroft_bus

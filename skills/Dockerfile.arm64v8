@@ -13,6 +13,8 @@ WORKDIR /home/mycroft/core
 
 USER root
 
+# GID 997 is related to Raspberry Pi OS, please update the gpio GID depending your
+# Linux distribution.
 RUN apt-get update && \
     apt-get install libffi-dev libssl-dev sudo mpg123 -y && \
     apt-get clean && \
@@ -20,7 +22,9 @@ RUN apt-get update && \
     chmod 440 /etc/sudoers.d/010_mycroft-nopasswd && \
     mkdir -p /opt/mycroft/skills && \
     chown mycroft:mycroft -R /opt/mycroft && \
-    usermod -a -G audio mycroft
+    usermod -a -G audio mycroft && \
+    groupadd -g 997 gpio && \
+    usermod -a -G gpio mycroft
 
 USER mycroft
 
