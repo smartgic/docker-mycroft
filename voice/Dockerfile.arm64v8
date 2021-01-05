@@ -3,11 +3,11 @@ FROM smartgic/mycroft-base:arm64v8-dev
 MAINTAINER Gaëtan Trellu <gaetan.trellu@smartgic.io>
 
 LABEL vendor=Smartgic.io \
-      io.smartgic.image-name="mycroft-voice" \
-      io.smartgic.is-beta="no" \
-      io.smartgic.is-production="no" \
-      io.smartgic.version="dev" \
-      io.smartgic.release-date="2021-01-01"
+    io.smartgic.image-name="mycroft-voice" \
+    io.smartgic.is-beta="no" \
+    io.smartgic.is-production="no" \
+    io.smartgic.version="dev" \
+    io.smartgic.release-date="2021-01-01"
 
 ARG XDG
 
