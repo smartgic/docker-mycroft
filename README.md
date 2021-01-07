@@ -53,9 +53,9 @@ To allow data persistance, Docker volumes are required which will avoid to re-pa
 
 | Architecture    | Tags                            |
 | ---             | ---                             |
-| `amd64/x86_64`  | `amd64-dev`, `amd64-latest`     |
-| `armf/armhf`    | `armf-dev`, `armf-latest` |
-| `aarch64/arm64` | `aarch64-dev`, `aarch64-latest` |
+| `x86_64`  | `x86_64-dev`, `x86_64-latest`     |
+| `armhf`    | `armhf-dev`, `armhf-latest` |
+| `aarch64` | `aarch64-dev`, `aarch64-latest` |
 
 `dev` is a nightly build based on the latest commits applied to the `dev` branch and `master` is the latest stable version.
 

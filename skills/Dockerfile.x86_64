@@ -1,4 +1,4 @@
-FROM smartgic/mycroft-base:amd64-dev
+FROM smartgic/mycroft-base:x86_64-dev
 
 LABEL vendor=Smartgic.io \
     io.smartgic.maintainer="Gaëtan Trellu <gaetan.trellu@smartgic.io>" \

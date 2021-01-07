@@ -82,7 +82,7 @@ else
 fi
 
 if [ -z $arch ]; then
-    export ARCH="amd64"
+    export ARCH="x86_64"
 else
     export ARCH="$arch"
 fi
