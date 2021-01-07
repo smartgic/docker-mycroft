@@ -54,8 +54,8 @@ To allow data persistance, Docker volumes are required which will avoid to re-pa
 | Architecture    | Tags                            |
 | ---             | ---                             |
 | `amd64/x86_64`  | `amd64-dev`, `amd64-latest`     |
-| `arm32v7/armhf` | `arm32v7-dev`, `arm32v7-latest` |
-| `arm64v8/arm64` | `arm64v8-dev`, `arm64v8-latest` |
+| `armf/armhf`    | `armf-dev`, `armf-latest` |
+| `aarch64/arm64` | `aarch64-dev`, `aarch64-latest` |
 
 `dev` is a nightly build based on the latest commits applied to the `dev` branch and `master` is the latest stable version.
 
@@ -74,7 +74,7 @@ Docker is of course required and `docker-compose` is a nice to have to simplify 
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
 $ cd docker-mycroft
-$ COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR ARCH=arm64v8 VERSION=dev docker-compose up -d
+$ COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR ARCH=aarch64 VERSION=dev docker-compose up -d
 ```
 
 Or using the `run.sh`, execute the script with the `-h` argument to display the help message.
@@ -82,7 +82,7 @@ Or using the `run.sh`, execute the script with the `-h` argument to display the 
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
 $ cd docker-mycroft
-$ sudo run.sh -a arm64v8 -v dev
+$ sudo run.sh -a aarch64 -v dev
 ```
 
 The `-u` option from `run.sh` will allows you to execute the script without privileges, the only requirement will be to add your user to the `docker` group then logout and login.
@@ -109,7 +109,7 @@ $ sudo docker run -d \
   --env PULSE_COOKIE=/home/mycroft/.config/pulse/cookie \
   --network host \
   --name mycroft_skills \
-  smartgic/mycroft-skills:arm64v8-dev
+  smartgic/mycroft-skills:aarch64-dev
 ```
 
 ### Pairing
