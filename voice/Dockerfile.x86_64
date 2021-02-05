@@ -28,6 +28,8 @@ RUN sed -i "s|REPLACEME|${XDG}|g" /etc/pulse/client.conf
 
 USER mycroft
 
+COPY files/asoundrc /home/mycroft/.asoundrc
+
 RUN pip3 install -r /home/mycroft/core/requirements/extra-stt.txt && \
     rm -rf ~/.cache
 
