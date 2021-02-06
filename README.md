@@ -73,6 +73,7 @@ Docker is of course required and `docker-compose` is a nice to have to simplify 
 
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
+$ mkdir mycroft-config mycroft-web-cache
 $ cd docker-mycroft
 $ COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR ARCH=aarch64 VERSION=dev docker-compose up -d
 ```
