@@ -123,6 +123,8 @@ If you don't have audio set up, you can retrieve the pairing code from logs `myc
 $ sudo docker logs -f mycroft_skills | grep -i "pairing code:"
 ```
 
+Once the device has been paired the required skills will be installed, this process could run for few minutes depending the hardware.
+
 ### CLI access
 
 Get access to the container CLI with:
