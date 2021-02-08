@@ -22,7 +22,6 @@ Use docker-compose to provision Mycroft AI Voice Assistant Docker stack
 Options:
     -h      Show this help message
     -t      Configures the time a request to the Docker daemon is allowed to hang, default to 120
-    -a      CPU architecture, default from "arch" command
     -v      Mycroft core version to use, default is "dev", "master" is avaiable too
     -x      Specify which XDG_RUNTIME_DIR to use, default is "/run/user/1000" but could be $XDG_RUNTIME_DIR if defined
     -u      Execute this script as a simple user, make sure your user is part of the "docker" group
@@ -35,7 +34,6 @@ while getopts t:a:v:x:uh flag
 do
     case "${flag}" in
         t) timeout=${OPTARG};;
-        a) arch=${OPTARG};;
         v) version=${OPTARG};;
         x) xdg=${OPTARG};;
         u) user="true";;
@@ -79,12 +77,6 @@ if [ -z $timeout ]; then
     export COMPOSE_HTTP_TIMEOUT=120
 else
     export COMPOSE_HTTP_TIMEOUT=$timeout
-fi
-
-if [ -z $arch ]; then
-    export ARCH="x86_64"
-else
-    export ARCH="$arch"
 fi
 
 if [ -z $version ]; then
