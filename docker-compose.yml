@@ -107,6 +107,7 @@ services:
     environment:
       PULSE_SERVER: unix:${XDG_RUNTIME_DIR}/pulse/native
       PULSE_COOKIE: /home/mycroft/.config/pulse/cookie
+      CRYPTOGRAPHY_DONT_BUILD_RUST: 1
     volumes:
       - ~/mycroft-config:/home/mycroft/.mycroft
       - ~/mycroft-web-cache:/var/tmp
