@@ -1,11 +1,13 @@
 FROM debian:buster-slim
 
+ARG TAG=dev
+
 LABEL vendor=Smartgic.io \
   io.smartgic.maintainer="Gaëtan Trellu <gaetan.trellu@smartgic.io>" \
   io.smartgic.image-name="mycroft-base" \
   io.smartgic.is-beta="no" \
   io.smartgic.is-production="no" \
-  io.smartgic.version="dev" \
+  io.smartgic.version="${TAG}" \
   io.smartgic.release-date="2021-01-02"
 
 ENV TERM linux

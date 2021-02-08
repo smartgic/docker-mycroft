@@ -1,19 +1,18 @@
-FROM smartgic/mycroft-base:aarch64-dev
+ARG TAG=dev
+FROM smartgic/mycroft-base:${TAG}
 
 LABEL vendor=Smartgic.io \
     io.smartgic.maintainer="Gaëtan Trellu <gaetan.trellu@smartgic.io>" \
     io.smartgic.image-name="mycroft-skills" \
     io.smartgic.is-beta="no" \
     io.smartgic.is-production="no" \
-    io.smartgic.version="dev" \
+    io.smartgic.version="${TAG}" \
     io.smartgic.release-date="2021-01-01"
 
 WORKDIR /home/mycroft/core
 
 USER root
 
-# GID 997 is related to Raspberry Pi OS, please update the gpio GID depending your
-# Linux distribution.
 RUN apt-get update && \
     apt-get install libffi-dev libssl-dev sudo mpg123 -y && \
     apt-get clean && \
@@ -21,9 +20,7 @@ RUN apt-get update && \
     chmod 440 /etc/sudoers.d/010_mycroft-nopasswd && \
     mkdir -p /opt/mycroft/skills && \
     chown mycroft:mycroft -R /opt/mycroft && \
-    usermod -a -G audio mycroft && \
-    groupadd -g 997 gpio && \
-    usermod -a -G gpio mycroft
+    usermod -a -G audio mycroft
 
 USER mycroft
 
