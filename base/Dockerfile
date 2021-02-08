@@ -1,4 +1,4 @@
-FROM amd64/debian:buster-slim
+FROM debian:buster-slim
 
 LABEL vendor=Smartgic.io \
   io.smartgic.maintainer="Gaëtan Trellu <gaetan.trellu@smartgic.io>" \
