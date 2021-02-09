@@ -1,15 +1,18 @@
-FROM smartgic/mycroft-base:x86_64-dev
+ARG TAG=dev
+FROM smartgic/mycroft-base:${TAG}
 
 LABEL vendor=Smartgic.io \
       io.smartgic.maintainer="Gaëtan Trellu <gaetan.trellu@smartgic.io>" \
-      io.smartgic.image-name="mycroft-enclosure" \
+      io.smartgic.image-name="mycroft-bus" \
       io.smartgic.is-beta="no" \
       io.smartgic.is-production="no" \
-      io.smartgic.version="dev" \
+      io.smartgic.version="${TAG}" \
       io.smartgic.release-date="2021-01-01"
 
 WORKDIR /home/mycroft/core
 
 USER mycroft
 
-ENTRYPOINT ["python", "-m", "mycroft.client.enclosure"]
+EXPOSE 8181
+
+ENTRYPOINT ["python", "-m", "mycroft.messagebus.service"]

@@ -22,7 +22,7 @@ services:
     container_name: mycroft_bus
     hostname: mycroft_bus
     restart: unless-stopped
-    image: smartgic/mycroft-bus:${ARCH}-${VERSION}
+    image: smartgic/mycroft-bus:${VERSION}
     network_mode: host
     volumes:
       - ~/mycroft-config:/home/mycroft/.mycroft
@@ -32,7 +32,7 @@ services:
     container_name: mycroft_enclosure
     hostname: mycroft_enclosure
     restart: unless-stopped
-    image: smartgic/mycroft-enclosure:${ARCH}-${VERSION}
+    image: smartgic/mycroft-enclosure:${VERSION}
     network_mode: host
     volumes:
       - ~/mycroft-config:/home/mycroft/.mycroft
@@ -44,7 +44,7 @@ services:
     container_name: mycroft_cli
     hostname: mycroft_cli
     restart: unless-stopped
-    image: smartgic/mycroft-cli:${ARCH}-${VERSION}
+    image: smartgic/mycroft-cli:${VERSION}
     network_mode: host
     volumes:
       - ~/mycroft-config:/home/mycroft/.mycroft
@@ -59,7 +59,7 @@ services:
     container_name: mycroft_audio
     hostname: mycroft_audio
     restart: unless-stopped
-    image: smartgic/mycroft-audio:${ARCH}-${VERSION}
+    image: smartgic/mycroft-audio:${VERSION}
     network_mode: host
     devices:
       - /dev/snd
@@ -78,7 +78,7 @@ services:
     container_name: mycroft_voice
     hostname: mycroft_voice
     restart: unless-stopped
-    image: smartgic/mycroft-voice:${ARCH}-${VERSION}
+    image: smartgic/mycroft-voice:${VERSION}
     network_mode: host
     devices:
       - /dev/snd
@@ -99,7 +99,7 @@ services:
     container_name: mycroft_skills
     hostname: mycroft_skills
     restart: unless-stopped
-    image: smartgic/mycroft-skills:${ARCH}-${VERSION}
+    image: smartgic/mycroft-skills:${VERSION}
     network_mode: host
     devices:
       - /dev/snd
@@ -107,6 +107,7 @@ services:
     environment:
       PULSE_SERVER: unix:${XDG_RUNTIME_DIR}/pulse/native
       PULSE_COOKIE: /home/mycroft/.config/pulse/cookie
+      CRYPTOGRAPHY_DONT_BUILD_RUST: 1
     volumes:
       - ~/mycroft-config:/home/mycroft/.mycroft
       - ~/mycroft-web-cache:/var/tmp
