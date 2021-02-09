@@ -49,16 +49,22 @@ To allow data persistance, Docker volumes are required which will avoid to re-pa
 | `mycroft_skills_venv`   | Mycroft AI virtualenv for skills requirements |
 
 
-## Supported architectures
+## Supported architectures and tags
 
-| Architecture |
-| ---          |
-| `amd64`      |
-| `arm/v7`     |
-| `arm64`      |
+| Architecture | Information                      |
+| ---          | ---                              |
+| `amd64`      | Such as AMD and Intel processors |
+| `arm/v6`     | Such as Raspberry Pi 1           |
+| `arm/v7`     | Such as Raspberry Pi 2/3/4       |
+| `arm64`      | Such as Raspberry Pi 4 64-bit    |
 
-`dev` is a nightly build based on the latest commits applied to the `dev` branch and `master` is the latest stable version.
+*These are examples, many other boards use these CPU architectures.*
 
+| Tag | Description                                                                         |
+| --  | ---                                                                                 |
+| `dev`/`latest`     | Nightly build based on the latest commits applied to the `dev` branch |
+| `master`/`stable` | The latest stable version based on the `master` branch                | 
+| `2X.XX`           | Current and previous stable versions                                  |
 
 ## Requirements
 
@@ -66,6 +72,9 @@ Docker is of course required and `docker-compose` is a nice to have to simplify 
 
 **PulseAudio is a requirement and has to be up and running on the host to expose a socket and allow the containers to use microphone and speakers.**
 
+If you plan to run Mycroft AI on a Raspberry Pi, have a look to this Ansible playbooks: https://github.com/smartgic/ansible-playbooks-mycroft.git
+
+This will help you to set the requirements such as firmware, overclocking, PulseAudio, filesystem, etc... *(except the Docker setup)*.
 
 ## How to use these images
 
@@ -75,7 +84,7 @@ Docker is of course required and `docker-compose` is a nice to have to simplify 
 $ git clone https://github.com/smartgic/docker-mycroft.git
 $ mkdir mycroft-config mycroft-web-cache
 $ cd docker-mycroft
-$ COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR ARCH=aarch64 VERSION=dev docker-compose up -d
+$ COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose up -d
 ```
 
 Or using the `run.sh`, execute the script with the `-h` argument to display the help message.
@@ -83,7 +92,7 @@ Or using the `run.sh`, execute the script with the `-h` argument to display the 
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
 $ cd docker-mycroft
-$ sudo run.sh -a aarch64 -v dev
+$ sudo run.sh -v dev
 ```
 
 The `-u` option from `run.sh` will allows you to execute the script without privileges, the only requirement will be to add your user to the `docker` group then logout and login.
