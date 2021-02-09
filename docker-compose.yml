@@ -118,6 +118,6 @@ services:
       - mycroft_skills_config:/home/mycroft/.config/mycroft
       - mycroft_skills_repo:/opt/mycroft
       - mycroft_skills:/opt/mycroft/skills
-      - /sys:/sys
+      - /sys:/sys:ro
     depends_on:
       - mycroft_bus
