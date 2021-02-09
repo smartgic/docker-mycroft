@@ -110,7 +110,7 @@ $ sudo docker run -d \
   -v mycroft_skills_repo:/opt/mycroft \
   -v ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse \
   -v ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie \
-  -v /sys:/sys \
+  -v /sys:/sys:ro \
   --device /dev/snd \
   --device /dev/gpiomem \ # For Raspberry Pi GPIO
   --group-add $(getent group audio | cut -d: -f3) \
