@@ -20,7 +20,9 @@ RUN apt-get update && \
     chmod 440 /etc/sudoers.d/010_mycroft-nopasswd && \
     mkdir -p /opt/mycroft/skills && \
     chown mycroft:mycroft -R /opt/mycroft && \
-    usermod -a -G audio mycroft
+    usermod -a -G audio mycroft && \
+    groupadd -g 997 gpio && \
+    usermod -a -G gpio mycroft
 
 USER mycroft
 
