@@ -63,7 +63,7 @@ command_exists() {
 
 # Few commands are required to continue such as docker and docker-compose
 # The check if perform whith the command_exists function from above.
-for COMMAND in "docker" "docker-compose" "arch"; do
+for COMMAND in "docker" "docker-compose"; do
     command_exists "${COMMAND}"
 done
 
