@@ -7,14 +7,13 @@
 - [Mycroft AI Voice Assistant running on Docker](#mycroft-ai-voice-assistant-running-on-docker)
   * [What is Mycroft AI?](#what-is-mycroft-ai-)
   * [How does it work with Docker?](#how-does-it-work-with-docker-)
-  * [Supported architectures](#supported-architectures)
+  * [Supported architectures and tags](#supported-architectures-and-tags)
   * [Requirements](#requirements)
   * [How to use these images](#how-to-use-these-images)
     + [Pairing](#pairing)
     + [CLI access](#cli-access)
     + [Skills management](#skills-management)
   * [Support](#support)
-
 
 ## What is Mycroft AI?
 
@@ -23,7 +22,6 @@
 [Mycroft AI](https://www.mycroft.ai/) is the world’s leading open source voice assistant. It is private by default and completely customizable. Our software runs on many platforms—on desktop, our reference hardware, a Raspberry Pi, or your own custom hardware.
 
 The Mycroft open source voice stack can be freely remixed, extended, and deployed anywhere. Mycroft may be used in anything from a science project to a global enterprise environment.
-
 
 ## How does it work with Docker?
 
@@ -48,21 +46,20 @@ To allow data persistance, Docker volumes are required which will avoid to re-pa
 | `mycroft_skills_repo`   | Mycroft AI skills repository cache            |
 | `mycroft_skills_venv`   | Mycroft AI virtualenv for skills requirements |
 
-
 ## Supported architectures and tags
 
-| Architecture | Information                      |
-| ---          | ---                              |
-| `amd64`      | Such as AMD and Intel processors |
-| `arm/v6`     | Such as Raspberry Pi 1           |
-| `arm/v7`     | Such as Raspberry Pi 2/3/4       |
-| `arm64`      | Such as Raspberry Pi 4 64-bit    |
+| Architecture | Information                                        |
+| ---          | ---                                                |
+| `amd64`      | Such as AMD and Intel processors                   |
+| `arm/v6`     | Such as Raspberry Pi 1 *(soon due to Mimic issue)* |
+| `arm/v7`     | Such as Raspberry Pi 2/3/4                         |
+| `arm64`      | Such as Raspberry Pi 4 64-bit                      |
 
 *These are examples, many other boards use these CPU architectures.*
 
 | Tag | Description                                                                         |
 | --  | ---                                                                                 |
-| `dev`/`latest`     | Nightly build based on the latest commits applied to the `dev` branch |
+| `dev`/`latest`    | Nightly build based on the latest commits applied to the `dev` branch |
 | `master`/`stable` | The latest stable version based on the `master` branch                | 
 | `2X.XX`           | Current and previous stable versions                                  |
 
@@ -149,7 +146,6 @@ $ mycroft-cli-client
 ```
 
 When the containers start, all the requirements and skills will be installed. This could takes some time depending the hardware and Mycroft will not be ready until this process has finished.
-
 
 ### Skills management
 
