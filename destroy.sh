@@ -74,11 +74,11 @@ fi
 DOCKER_COMPOSE_OPTIONS=""
 
 if [ -z $volumes ]; then
-    export DOCKER_COMPOSE_OPTIONS+="--volumes"
+    export DOCKER_COMPOSE_OPTIONS+="--volumes "
 fi
 
 if [ -z $images ]; then
-    export DOCKER_COMPOSE_OPTIONS+="--rmi all"
+    export DOCKER_COMPOSE_OPTIONS+="--rmi all "
 fi
 
 # Execute docker-compose using the docker-compose.yml file from the
