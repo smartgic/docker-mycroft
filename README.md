@@ -86,8 +86,8 @@ $ docker build -t smartgic/mycroft-base:dev --build-arg BRANCH=dev --build-arg T
 ```
 
 Two arguments are available for the `base` image:
-  - `BRANCH`: Which branch to use from `mycroft-core` GitHub repository
-  - `TAG`: What tag this image will have *(default is `dev`)*.
+* `BRANCH`: Which branch to use from `mycroft-core` GitHub repository
+* `TAG`: What tag this image will have *(default is `dev`)*.
 
 Other than the `base` image, only the `TAG` argument is available.
 ```
@@ -184,6 +184,7 @@ $ msm install https://github.com/smartgic/mycroft-wakeword-led-gpio-skill.git
 
 ## Support
 
+* [Discord channel](https://discord.gg/Vu7Wmd9j)
 * [Mycroft AI documentation](https://mycroft-ai.gitbook.io/docs)
 * [Mycroft AI community](https://community.mycroft.ai)
 * [Contribute to Mycroft AI](https://mycroft.ai/contribute)
