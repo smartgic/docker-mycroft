@@ -9,8 +9,6 @@ LABEL vendor=Smartgic.io \
     io.smartgic.version="${TAG}" \
     io.smartgic.release-date="2021-01-01"
 
-ARG XDG
-
 ENV DEBIAN_FRONTEND noninteractive
 
 WORKDIR /home/mycroft/core
@@ -24,8 +22,6 @@ RUN apt-get update && \
     usermod -a -G audio mycroft
 
 COPY files/client.conf /etc/pulse/client.conf
-
-RUN sed -i "s|REPLACEME|${XDG}|g" /etc/pulse/client.conf
 
 USER mycroft
 
