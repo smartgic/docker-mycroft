@@ -10,6 +10,7 @@
   * [How does it work with Docker?](#how-does-it-work-with-docker-)
   * [Supported architectures and tags](#supported-architectures-and-tags)
   * [Requirements](#requirements)
+  * [How to build these images](#how-to-build-these-images)
   * [How to use these images](#how-to-use-these-images)
     + [Pairing](#pairing)
     + [CLI access](#cli-access)
@@ -73,6 +74,27 @@ Docker is of course required and `docker-compose` is a nice to have to simplify 
 If you plan to run Mycroft AI on a Raspberry Pi, have a look to this Ansible playbooks: https://github.com/smartgic/ansible-playbooks-mycroft.git
 
 This will help you to set the requirements such as firmware, overclocking, PulseAudio, filesystem, etc... *(except the Docker setup)*.
+
+## How to build these images
+
+The `base` image is the main image for the other images, for example the `audio` image requires the `base` image to be build.
+
+```bash
+$ git clone https://github.com/smartgic/docker-mycroft.git
+$ cd docker-mycroft
+$ docker build -t smartgic/mycroft-base:dev --build-arg BRANCH=dev --build-arg TAG=dev base/
+```
+
+Two arguments are available for the `base` image:
+  - `BRANCH`: Which branch to use from `mycroft-core` GitHub repository
+  - `TAG`: What tag this image will have *(default is `dev`)*.
+
+Other than the `base` image, only the `TAG` argument is available.
+```
+$ docker build -t smartgic/mycroft-audio:dev --build-arg TAG=dev audio/
+```
+
+Seven *(7)* images needs to be build; `mycroft-base`, `mycroft-voice`, `mycroft-skills`, `mycroft-cli`, `mycroft-bus`, `mycroft-enclosure`, `mycroft-audio`.
 
 ## How to use these images
 
