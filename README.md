@@ -103,6 +103,7 @@ Seven *(7)* images needs to be build; `mycroft-base`, `mycroft-voice`, `mycroft-
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
 $ mkdir mycroft-config mycroft-web-cache
+$ chown 1000:1000 mycroft-config mycroft-web-cache
 $ cd docker-mycroft
 $ COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose up -d
 ```
