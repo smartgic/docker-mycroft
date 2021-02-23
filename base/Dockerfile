@@ -21,6 +21,7 @@ ARG PYTHON_VERSION="python3 -c 'from sys import version_info as i; print(f\"{i[0
 RUN apt-get update && \
   apt-get install -y git python3 python3-venv python3-dev curl swig \
   portaudio19-dev zlib1g-dev libjpeg-dev libfann-dev build-essential && \
+  c_rehash && \
   apt-get autoremove -y && \
   apt-get clean && \
   useradd --no-log-init mycroft -m && \
