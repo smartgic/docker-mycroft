@@ -71,6 +71,7 @@ done
 #   - mycroft-config: Mycroft configuration file such as mycroft.conf
 #   - mycroft-web-cache: Configuration sent by Selene backend to the device
 mkdir -p ~/mycroft-config ~/mycroft-web-cache
+chown 1000:1000 ~/mycroft-config ~/mycroft-web-cache
 
 # Variables used by docker-compose during creation process.
 if [ -z $timeout ]; then
