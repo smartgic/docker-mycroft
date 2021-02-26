@@ -1,8 +1,12 @@
+---
 version: "3.6"
 
 volumes:
   mycroft_ipc:
     name: mycroft_ipc
+    driver: local
+  mycroft_cache:
+    name: mycroft_cache
     driver: local
   mycroft_skills:
     name: mycroft_skills
@@ -16,7 +20,7 @@ volumes:
   mycroft_skills_venv:
     name: mycroft_venv
     driver: local
-  
+
 services:
   mycroft_bus:
     container_name: mycroft_bus
@@ -69,6 +73,7 @@ services:
     volumes:
       - ~/mycroft-config:/home/mycroft/.mycroft
       - mycroft_ipc:/tmp/mycroft/ipc
+      - mycroft_cache:/tmp/mycroft/cache
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
     depends_on:
@@ -114,6 +119,7 @@ services:
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
       - mycroft_ipc:/tmp/mycroft/ipc
+      - mycroft_cache:/tmp/mycroft/cache
       - mycroft_skills_venv:/opt/mycroft-venv
       - mycroft_skills_config:/home/mycroft/.config/mycroft
       - mycroft_skills_repo:/opt/mycroft

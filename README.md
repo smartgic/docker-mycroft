@@ -43,6 +43,7 @@ To allow data persistance, Docker volumes are required which will avoid to re-pa
 | Volume                  | Description                                   |
 | ---                     | ---                                           |
 | `mycroft_ipc`           | Mycroft AI inter-process communication        |
+| `mycroft_cache`         | Mycroft AI cache                              |
 | `mycroft_skills`        | Mycroft AI skills source code                 |
 | `mycroft_skills_config` | Mycroft AI skills configuration               |
 | `mycroft_skills_repo`   | Mycroft AI skills repository cache            |

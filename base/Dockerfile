@@ -38,4 +38,4 @@ RUN git clone https://github.com/MycroftAI/mycroft-core.git \
   pip3 install -r ${MYCROFT_DIR}/requirements/requirements.txt && \
   echo "${MYCROFT_DIR}" > ${VIRTUAL_ENV}/lib/python$(eval ${PYTHON_VERSION})/site-packages/mycroft.pth && \
   rm -rf ${HOME}/.cache && \
-  mkdir -p /tmp/mycroft/ipc /home/mycroft/.mycroft
+  mkdir -p /tmp/mycroft/ipc /home/mycroft/.mycroft /tmp/mycroft/cache
