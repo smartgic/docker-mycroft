@@ -15,6 +15,7 @@
     + [Pairing](#pairing)
     + [CLI access](#cli-access)
     + [Skills management](#skills-management)
+  * [FAQ](#faq)
   * [Support](#support)
 
 ## What is Mycroft AI?
