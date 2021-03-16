@@ -184,6 +184,10 @@ From the container's command prompt, use the `msm` command to install a skill fr
 $ msm install https://github.com/smartgic/mycroft-wakeword-led-gpio-skill.git
 ```
 
+## FAQ
+
+* [Impossible to update configuration because device isn't paired](https://github.com/smartgic/docker-mycroft/issues/5)
+
 ## Support
 
 * [Discord channel](https://discord.gg/Vu7Wmd9j)
