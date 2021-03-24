@@ -25,6 +25,8 @@ RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key
 
 USER mycroft
 
+COPY files/asoundrc /home/mycroft/.asoundrc
+
 RUN mkdir -p /home/mycroft/.config/pulse && \
   pip3 install -r /home/mycroft/core/requirements/extra-audiobackend.txt \
   git+https://github.com/JarbasAl/py_mplayer.git && \
