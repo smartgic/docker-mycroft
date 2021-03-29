@@ -18,7 +18,7 @@ RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key
   echo "deb http://forslund.github.io/mycroft-desktop-repo bionic main" \
   > /etc/apt/sources.list.d/mycroft-mimic.list && \
   apt-get update && \
-  apt-get install -y alsa-utils libasound2-plugins:arm64 mpg123 pulseaudio-utils mimic vlc && \
+  apt-get install -y alsa-utils libasound2-plugins mpg123 pulseaudio-utils mimic vlc && \
   apt-get -y autoremove && \
   apt-get clean && \
   usermod -a -G audio mycroft
