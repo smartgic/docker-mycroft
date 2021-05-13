@@ -19,7 +19,7 @@ ARG BRANCH
 ARG PYTHON_VERSION="python3 -c 'from sys import version_info as i; print(f\"{i[0]}.{i[1]}\")'"
 
 RUN apt-get update && \
-  apt-get install -y git python3 python3-venv python3-dev curl swig \
+  apt-get install -y git python3 python3-venv python3-dev curl swig libffi-dev \
   portaudio19-dev zlib1g-dev libjpeg-dev libfann-dev build-essential && \
   c_rehash && \
   apt-get autoremove -y && \
