@@ -152,7 +152,7 @@ If your audio is configured correctly, you should hear your Mycroft instance giv
 If you don't have audio set up, you can retrieve the pairing code from logs `mycroft_skills` container:
 
 ```bash
-$ sudo docker logs -f mycroft_skills | grep -i "pairing code:"
+$ sudo docker logs -f mycroft_skills | grep -i "pairing code"
 ```
 
 Once the device has been paired the required skills will be installed, this process could run for few minutes depending the hardware.
