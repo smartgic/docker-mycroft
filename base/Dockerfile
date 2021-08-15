@@ -8,7 +8,7 @@ LABEL vendor=Smartgic.io \
   io.smartgic.is-beta="no" \
   io.smartgic.is-production="no" \
   io.smartgic.version="${TAG}" \
-  io.smartgic.release-date="2021-01-02"
+  io.smartgic.release-date="2021-08-15"
 
 ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
@@ -38,4 +38,4 @@ RUN git clone https://github.com/MycroftAI/mycroft-core.git \
   pip3 install -r ${MYCROFT_DIR}/requirements/requirements.txt && \
   echo "${MYCROFT_DIR}" > ${VIRTUAL_ENV}/lib/python$(eval ${PYTHON_VERSION})/site-packages/mycroft.pth && \
   rm -rf ${HOME}/.cache && \
-  mkdir -p /tmp/mycroft/ipc /home/mycroft/.mycroft /tmp/mycroft/cache
+  mkdir -p /tmp/mycroft/ipc /home/mycroft/.config/mycroft /tmp/mycroft/cache

@@ -29,7 +29,7 @@ services:
     image: smartgic/mycroft-bus:${VERSION}
     network_mode: host
     volumes:
-      - ~/mycroft-config:/home/mycroft/.mycroft
+      - ~/mycroft-config:/home/mycroft/.config/mycroft
       - mycroft_ipc:/tmp/mycroft/ipc
 
   mycroft_enclosure:
@@ -39,7 +39,7 @@ services:
     image: smartgic/mycroft-enclosure:${VERSION}
     network_mode: host
     volumes:
-      - ~/mycroft-config:/home/mycroft/.mycroft
+      - ~/mycroft-config:/home/mycroft/.config/mycroft
       - mycroft_ipc:/tmp/mycroft/ipc
     depends_on:
       - mycroft_bus
@@ -51,7 +51,7 @@ services:
     image: smartgic/mycroft-cli:${VERSION}
     network_mode: host
     volumes:
-      - ~/mycroft-config:/home/mycroft/.mycroft
+      - ~/mycroft-config:/home/mycroft/.config/mycroft
       - mycroft_ipc:/tmp/mycroft/ipc
       - mycroft_skills_venv:/opt/mycroft-venv
       - mycroft_skills_repo:/opt/mycroft
@@ -71,7 +71,7 @@ services:
       PULSE_SERVER: unix:${XDG_RUNTIME_DIR}/pulse/native
       PULSE_COOKIE: /home/mycroft/.config/pulse/cookie
     volumes:
-      - ~/mycroft-config:/home/mycroft/.mycroft
+      - ~/mycroft-config:/home/mycroft/.config/mycroft
       - mycroft_ipc:/tmp/mycroft/ipc
       - mycroft_cache:/tmp/mycroft/cache
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
@@ -91,7 +91,7 @@ services:
       PULSE_SERVER: unix:${XDG_RUNTIME_DIR}/pulse/native
       PULSE_COOKIE: /home/mycroft/.config/pulse/cookie
     volumes:
-      - ~/mycroft-config:/home/mycroft/.mycroft
+      - ~/mycroft-config:/home/mycroft/.config/mycroft
       - ~/mycroft-web-cache:/var/tmp
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
@@ -114,14 +114,14 @@ services:
       PULSE_COOKIE: /home/mycroft/.config/pulse/cookie
       CRYPTOGRAPHY_DONT_BUILD_RUST: 1
     volumes:
-      - ~/mycroft-config:/home/mycroft/.mycroft
+      - ~/mycroft-config:/home/mycroft/.config/mycroft
       - ~/mycroft-web-cache:/var/tmp
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
       - mycroft_ipc:/tmp/mycroft/ipc
       - mycroft_cache:/tmp/mycroft/cache
       - mycroft_skills_venv:/opt/mycroft-venv
-      - mycroft_skills_config:/home/mycroft/.config/mycroft
+      - mycroft_skills_config:/home/mycroft/.local/share/mycroft/skills
       - mycroft_skills_repo:/opt/mycroft
       - mycroft_skills:/opt/mycroft/skills
       - /sys:/sys:ro
