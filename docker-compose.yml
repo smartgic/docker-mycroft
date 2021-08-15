@@ -14,9 +14,6 @@ volumes:
   mycroft_skills_repo:
     name: mycroft_skills_repo
     driver: local
-  mycroft_skills_config:
-    name: mycroft_skills_config
-    driver: local
   mycroft_skills_venv:
     name: mycroft_venv
     driver: local
@@ -121,7 +118,6 @@ services:
       - mycroft_ipc:/tmp/mycroft/ipc
       - mycroft_cache:/tmp/mycroft/cache
       - mycroft_skills_venv:/opt/mycroft-venv
-      - mycroft_skills_config:/home/mycroft/.local/share/mycroft/skills
       - mycroft_skills_repo:/opt/mycroft
       - mycroft_skills:/opt/mycroft/skills
       - /sys:/sys:ro
