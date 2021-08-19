@@ -59,7 +59,8 @@ To allow data persistance, Docker volumes are required which will avoid to re-pa
 | `arm/v7`     | Such as Raspberry Pi 2/3/4                         |
 | `arm64`      | Such as Raspberry Pi 4 64-bit                      |
 
-The Raspberry Pi(s) are dectected automatically to allow GPIOmem device to be passed to the Skills container.
+*Raspberry Pi(s) are automatically dectected to allow `/dev/gpiomem` device to be passed to the `mycroft_skills` container.*
+
 *These are examples, many other boards use these CPU architectures.*
 
 | Tag | Description                                                                         |
