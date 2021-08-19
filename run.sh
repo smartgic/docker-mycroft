@@ -75,8 +75,7 @@ done
 # This is done since amd64 computers do not have the same hardware device
 #  for GPIO pins like the Pi does.
 case $(uname -m) in
-    armv7l)
-    aarch64)
+    armv7l | aarch64)
         raspberrypi="true" ;;
 esac
 
