@@ -67,6 +67,13 @@ for COMMAND in "docker" "docker-compose"; do
     command_exists "${COMMAND}"
 done
 
+# Check if platform is Raspberry Pi, to apply it's own configuration later
+# This is done since amd64 computers do not have the same hardware device
+#  for GPIO pins like the Pi does.
+if [[ $(uname -m) == 'armv7l' ]]; then
+    raspberrypi="true"
+fi
+
 # Create Docker mount directories.
 #   - mycroft-config: Mycroft configuration file such as mycroft.conf
 #   - mycroft-web-cache: Configuration sent by Selene backend to the device
@@ -93,5 +100,9 @@ else
 fi
 
 # Execute docker-compose using the docker-compose.yml file from the
-# same directory.
-docker-compose up -d
+# same directory, adding the Raspberry Pi override if necessary.
+if [ -z $raspberrypi ]; then
+    docker-compose -f docker-compose.yml up -d
+else
+    docker-compose -f docker-compose.yml -f docker-compose.raspberrypi.yml up -d
+fi

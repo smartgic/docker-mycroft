@@ -105,7 +105,6 @@ services:
     network_mode: host
     devices:
       - /dev/snd
-      - /dev/gpiomem
     environment:
       PULSE_SERVER: unix:${XDG_RUNTIME_DIR}/pulse/native
       PULSE_COOKIE: /home/mycroft/.config/pulse/cookie
