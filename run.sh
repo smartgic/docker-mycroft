@@ -70,9 +70,11 @@ done
 # Check if platform is Raspberry Pi, to apply it's own configuration later
 # This is done since amd64 computers do not have the same hardware device
 #  for GPIO pins like the Pi does.
-if [[ $(uname -m) == 'armv7l' ]]; then
-    raspberrypi="true"
-fi
+case $(uname -m) in
+    armv7l)
+    aarch64)
+        raspberrypi="true" ;;
+esac
 
 # Create Docker mount directories.
 #   - mycroft-config: Mycroft configuration file such as mycroft.conf
