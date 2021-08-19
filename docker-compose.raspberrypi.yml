@@ -1,0 +1,5 @@
+---
+services:
+  mycroft_skills:
+    devices:
+      - /dev/gpiomem
