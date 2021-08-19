@@ -24,18 +24,22 @@ Options:
     -t      Configures the time a request to the Docker daemon is allowed to hang, default to 120
     -v      Mycroft core version to use, default is "dev", "master" is avaiable too
     -x      Specify which XDG_RUNTIME_DIR to use, default is "/run/user/1000" but could be $XDG_RUNTIME_DIR if defined
+    -c      Specify the mycroft-config folder, default is ~/mycroft-config, assumes existing folder when manually provided
+    -w      Specify the mycroft-web-cache folder, default is ~/mycroft-web-cache, assumes existing folder when manually provided
     -u      Execute this script as a simple user, make sure your user is part of the "docker" group
     '
     exit
 }
 
 # Check the arguments passed to the script.
-while getopts t:a:v:x:uh flag
+while getopts t:a:v:x:c:w:uh flag
 do
     case "${flag}" in
         t) timeout=${OPTARG};;
         v) version=${OPTARG};;
         x) xdg=${OPTARG};;
+        c) configfolder=${OPTARG};;
+        w) webcachefolder=${OPTARG};;
         u) user="true";;
         h) help;;
     esac
@@ -79,8 +83,22 @@ esac
 # Create Docker mount directories.
 #   - mycroft-config: Mycroft configuration file such as mycroft.conf
 #   - mycroft-web-cache: Configuration sent by Selene backend to the device
-mkdir -p ~/mycroft-config ~/mycroft-web-cache
-chown 1000:1000 ~/mycroft-config ~/mycroft-web-cache
+
+if [ -z $configfolder ]; then
+    export CONFIG_FOLDER=~/mycroft-config
+    mkdir -p ${CONFIG_FOLDER}
+    chown 1000:1000 ${CONFIG_FOLDER}
+else
+    export CONFIG_FOLDER=$configfolder
+fi
+if [ -z $webcachefolder ]; then
+    export WEBCACHE_FOLDER=~/mycroft-web-cache
+    mkdir -p ${WEBCACHE_FOLDER}
+    chown 1000:1000 ${WEBCACHE_FOLDER}
+else
+    export WEBCACHE_FOLDER=$webcachefolder
+fi
+
 
 # Variables used by docker-compose during creation process.
 if [ -z $timeout ]; then
