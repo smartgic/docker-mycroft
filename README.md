@@ -109,8 +109,8 @@ $ git clone https://github.com/smartgic/docker-mycroft.git
 $ mkdir mycroft-config mycroft-web-cache
 $ chown 1000:1000 mycroft-config mycroft-web-cache
 $ cd docker-mycroft
-$ COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose up -d
-$ #COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev -f docker-compose -f docker-compose.raspberrypi.yml up -d # For Raspberry Pi only
+$ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose up -d
+$ #CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose -f docker-compose.yml -f docker-compose.raspberrypi.yml up -d # For Raspberry Pi only
 ```
 
 Or using the `run.sh`, execute the script with the `-h` argument to display the help message.
