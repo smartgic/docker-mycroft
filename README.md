@@ -110,7 +110,7 @@ $ mkdir mycroft-config mycroft-web-cache
 $ chown 1000:1000 mycroft-config mycroft-web-cache
 $ cd docker-mycroft
 $ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose up -d
-$ #CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose -f docker-compose.yml -f docker-compose.raspberrypi.yml up -d # For Raspberry Pi only
+$ #CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache COMPOSE_HTTP_TIMEOUT=300 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose -f docker-compose.yml -f docker-compose.raspberrypi.yml up -d # For Raspberry Pi only
 ```
 
 Or using the `run.sh`, execute the script with the `-h` argument to display the help message.
@@ -190,6 +190,7 @@ $ msm install https://github.com/smartgic/mycroft-wakeword-led-gpio-skill.git
 ## FAQ
 
 * [Impossible to update configuration because device isn't paired](https://github.com/smartgic/docker-mycroft/issues/5)
+* [[Errno 13] Permission denied: '/home/mycroft/.config/mycroft/skills](https://github.com/smartgic/docker-mycroft/issues/13)
 
 ## Support
 
