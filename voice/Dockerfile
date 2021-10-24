@@ -16,7 +16,7 @@ WORKDIR /home/mycroft/core
 USER root
 
 RUN apt-get update && \
-    apt-get install -y alsa-utils pulseaudio-utils flac libasound2-plugins && \
+    apt-get install -y alsa-utils pulseaudio-utils flac libasound2-plugins libatlas-base-dev gfortran && \
     apt-get -y autoremove && \
     apt-get clean && \
     usermod -a -G audio mycroft
@@ -28,6 +28,8 @@ USER mycroft
 COPY files/asoundrc /home/mycroft/.asoundrc
 
 RUN pip3 install -r /home/mycroft/core/requirements/extra-stt.txt && \
+    pip3 install numpy https://github.com/OpenVoiceOS/ovos-ww-plugin-precise-lite && \
+    mkdir -p /home/mycroft/models && \
     rm -rf ~/.cache
 
 ENTRYPOINT ["python", "-m", "mycroft.client.speech"]

@@ -41,14 +41,14 @@ Mycroft AI is a complex piece of software which has several core services. These
 
 To allow data persistance, Docker volumes are required which will avoid to re-pair the device, re-install the skills, etc... everytime that the the container is re-created.
 
-| Volume                  | Description                                   |
-| ---                     | ---                                           |
-| `mycroft_ipc`           | Mycroft AI inter-process communication        |
-| `mycroft_cache`         | Mycroft AI cache                              |
-| `mycroft_skills`        | Mycroft AI skills source code                 |
-| `mycroft_skills_config` | Mycroft AI skills configuration               |
-| `mycroft_skills_repo`   | Mycroft AI skills repository cache            |
-| `mycroft_skills_venv`   | Mycroft AI virtualenv for skills requirements |
+| Volume                  | Description                                         |
+| ---                     | ---                                                 |
+| `mycroft_ipc`           | Mycroft AI inter-process communication              |
+| `mycroft_cache`         | Mycroft AI cache                                    |
+| `mycroft_skills`        | Mycroft AI skills source code                       |
+| `mycroft_skills_repo`   | Mycroft AI skills repository cache                  |
+| `mycroft_skills_venv`   | Mycroft AI virtualenv for skills requirements       |
+| `mycroft_precise_models`| Mycroft AI Precise models for `precise-lite` plugin |
 
 ## Supported architectures and tags
 
@@ -66,7 +66,7 @@ To allow data persistance, Docker volumes are required which will avoid to re-pa
 | Tag | Description                                                                         |
 | --  | ---                                                                                 |
 | `dev`/`latest`    | Nightly build based on the latest commits applied to the `dev` branch |
-| `master`/`stable` | The latest stable version based on the `master` branch                | 
+| `master`/`stable` | The latest stable version based on the `master` branch                |
 | `2X.XX`           | Current and previous stable versions                                  |
 
 ## Requirements
