@@ -28,7 +28,7 @@ USER mycroft
 COPY files/asoundrc /home/mycroft/.asoundrc
 
 RUN pip3 install -r /home/mycroft/core/requirements/extra-stt.txt && \
-    pip3 install numpy https://github.com/OpenVoiceOS/ovos-ww-plugin-precise-lite && \
+    pip3 install numpy git+https://github.com/OpenVoiceOS/ovos-ww-plugin-precise-lite && \
     mkdir -p /home/mycroft/models && \
     rm -rf ~/.cache
 
