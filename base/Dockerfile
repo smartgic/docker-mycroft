@@ -35,7 +35,7 @@ ENV PATH ${VIRTUAL_ENV}/bin/:$PATH
 RUN git clone https://github.com/MycroftAI/mycroft-core.git \
   $MYCROFT_DIR -b $BRANCH && \
   pip3 install -U pip && \
-  pip3 install wheel && \
+  pip3 install wheel numpy && \
   pip3 install -r ${MYCROFT_DIR}/requirements/requirements.txt && \
   echo "${MYCROFT_DIR}" > ${VIRTUAL_ENV}/lib/python$(eval ${PYTHON_VERSION})/site-packages/mycroft.pth && \
   rm -rf ${HOME}/.cache && \
