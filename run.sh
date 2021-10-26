@@ -26,6 +26,7 @@ Options:
     -x      Specify which XDG_RUNTIME_DIR to use, default is "/run/user/1000" but could be $XDG_RUNTIME_DIR if defined
     -c      Specify the mycroft-config folder, default is ~/mycroft-config, assumes existing folder when manually provided
     -w      Specify the mycroft-web-cache folder, default is ~/mycroft-web-cache, assumes existing folder when manually provided
+    -m      Specify the mycroft-precise-models folder, default is ~/mycroft-precise-models, assumes existing folder when manually provided
     -u      Execute this script as a simple user, make sure your user is part of the "docker" group
     '
     exit
@@ -40,6 +41,7 @@ do
         x) xdg=${OPTARG};;
         c) configfolder=${OPTARG};;
         w) webcachefolder=${OPTARG};;
+        m) modelsfolder=${OPTARG};:
         u) user="true";;
         h) help;;
     esac
@@ -82,7 +84,7 @@ esac
 # Create Docker mount directories.
 #   - mycroft-config: Mycroft configuration file such as mycroft.conf
 #   - mycroft-web-cache: Configuration sent by Selene backend to the device
-
+#   - mycroft-precise-models: Custom models to use with precise or precise-lite
 if [ -z $configfolder ]; then
     export CONFIG_FOLDER=~/mycroft-config
     mkdir -p ${CONFIG_FOLDER}
@@ -97,7 +99,13 @@ if [ -z $webcachefolder ]; then
 else
     export WEBCACHE_FOLDER=$webcachefolder
 fi
-
+if [ -z $modelsfolder ]; then
+    export MODELS_FOLDER=~/mycroft-precise-models
+    mkdir -p ${MODELS_FOLDER}
+    chown 1000:1000 ${MODELS_FOLDER}
+else
+    export MODELS_FOLDER=$modelsfolder
+fi
 
 # Variables used by docker-compose during creation process.
 if [ -z $timeout ]; then

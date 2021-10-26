@@ -17,9 +17,6 @@ volumes:
   mycroft_skills_venv:
     name: mycroft_venv
     driver: local
-  mycroft_precise_models:
-    name: mycroft_precise_models
-    driver: local
 
 services:
   mycroft_bus:
@@ -93,10 +90,10 @@ services:
     volumes:
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
       - ${WEBCACHE_FOLDER}:/var/tmp
+      - ${MODELS_FOLDER}:/home/mycroft/models
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
       - mycroft_ipc:/tmp/mycroft/ipc
-      - mycroft_precise_models:/home/mycroft/models
     depends_on:
       - mycroft_bus
       - mycroft_audio

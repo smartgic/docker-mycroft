@@ -48,7 +48,6 @@ To allow data persistance, Docker volumes are required which will avoid to re-pa
 | `mycroft_skills`        | Mycroft AI skills source code                       |
 | `mycroft_skills_repo`   | Mycroft AI skills repository cache                  |
 | `mycroft_skills_venv`   | Mycroft AI virtualenv for skills requirements       |
-| `mycroft_precise_models`| Mycroft AI Precise models for `precise-lite` plugin |
 
 ## Supported architectures and tags
 
@@ -106,11 +105,11 @@ Seven *(7)* images needs to be build; `mycroft-base`, `mycroft-voice`, `mycroft-
 
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
-$ mkdir mycroft-config mycroft-web-cache
-$ chown 1000:1000 mycroft-config mycroft-web-cache
+$ mkdir mycroft-config mycroft-web-cache mycroft-precise-models
+$ chown 1000:1000 mycroft-config mycroft-web-cache mycroft-precise-models
 $ cd docker-mycroft
-$ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose up -d
-$ #CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache COMPOSE_HTTP_TIMEOUT=300 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose -f docker-compose.yml -f docker-compose.raspberrypi.yml up -d # For Raspberry Pi only
+$ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache MODELS_FOLDER=~/mycroft-precise-models COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose up -d
+$ #CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache MODELS_FOLDER=~/mycroft-precise-models COMPOSE_HTTP_TIMEOUT=300 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose -f docker-compose.yml -f docker-compose.raspberrypi.yml up -d # For Raspberry Pi only
 ```
 
 Or using the `run.sh`, execute the script with the `-h` argument to display the help message.
