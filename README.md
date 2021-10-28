@@ -12,6 +12,7 @@
   * [Requirements](#requirements)
   * [How to build these images](#how-to-build-these-images)
   * [How to use these images](#how-to-use-these-images)
+    + [Raspberry Pi](#raspberry-pi)
     + [Pairing](#pairing)
     + [CLI access](#cli-access)
     + [Skills management](#skills-management)
@@ -43,7 +44,6 @@ To allow data persistance, Docker volumes are required which will avoid to re-pa
 
 | Volume                  | Description                                         |
 | ---                     | ---                                                 |
-| `mycroft_ipc`           | Mycroft AI inter-process communication              |
 | `mycroft_cache`         | Mycroft AI cache                                    |
 | `mycroft_skills`        | Mycroft AI skills source code                       |
 | `mycroft_skills_repo`   | Mycroft AI skills repository cache                  |
@@ -105,11 +105,10 @@ Seven *(7)* images needs to be build; `mycroft-base`, `mycroft-voice`, `mycroft-
 
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
-$ mkdir mycroft-config mycroft-web-cache mycroft-precise-models
+$ mkdir mycroft-config mycroft-web-cache mycroft-precise-models mycroft-ipc
 $ chown 1000:1000 mycroft-config mycroft-web-cache mycroft-precise-models
 $ cd docker-mycroft
-$ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache MODELS_FOLDER=~/mycroft-precise-models COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose up -d
-$ #CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache MODELS_FOLDER=~/mycroft-precise-models COMPOSE_HTTP_TIMEOUT=300 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose -f docker-compose.yml -f docker-compose.raspberrypi.yml up -d # For Raspberry Pi only
+$ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache MODELS_FOLDER=~/mycroft-precise-models IPC_FOLDER=~/mycroft-ipc COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose up -d
 ```
 
 Or using the `run.sh`, execute the script with the `-h` argument to display the help message.
@@ -128,7 +127,7 @@ Without `docker-compose` the container creation could be tedious and repetitive,
 $ sudo docker run -d \
   -v ~/mycroft-config:/home/mycroft/.config/mycroft \
   -v ~/mycroft-web-cache:/var/tmp \
-  -v mycroft_ipc:/tmp/mycroft/ipc \
+  -v ~/mycroft-ipc:/tmp/mycroft/ipc \
   -v mycroft_skills:/opt/mycroft/skills \
   -v mycroft_skills_venv:/opt/mycroft-venv \
   -v mycroft_skills_repo:/opt/mycroft \
@@ -136,15 +135,57 @@ $ sudo docker run -d \
   -v ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie \
   -v /sys:/sys:ro \
   --device /dev/snd \
-  --device /dev/gpiomem \ # For Raspberry Pi GPIO
   --group-add $(getent group audio | cut -d: -f3) \
-  --group-add $(getent group gpio | cut -d: -f3) \ # For Raspberry Pi GPIO
   --env PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
   --env PULSE_COOKIE=/home/mycroft/.config/pulse/cookie \
   --network host \
   --name mycroft_skills \
   smartgic/mycroft-skills:dev
 ```
+
+### Raspberry Pi
+
+To reduce IOPS contention we recommend to use a `tmpfs` for `mycroft-ipc` directory, `tmpfs` will prevent write IO on the disk.
+
+```bash
+$ sudo mkdir -p /mnt/mycroft/ipc
+$ echo "tmpfs /mnt/mycroft/ipc tmpfs nosuid,nodev,size=64M,mode=700,uid=1000,gid=1000 0 0" | sudo tee -a /etc/fstab
+$ sudo mount -a
+```
+
+Make sure the user `UID` and `GID` match your user.
+
+```bash
+$ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache MODELS_FOLDER=~/mycroft-precise-models IPC_FOLDER=/media/mycroft/ipc COMPOSE_HTTP_TIMEOUT=600 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose -f docker-compose.yml -f docker-compose.raspberrypi.yml up -d
+```
+
+Remember, the Raspberry Pi is "slow" board so the `docker-compose` deployment could take longer than expected.
+
+Without `docker-compose` the container creation could be tedious and repetitive, *(example of `mycroft_skills` container)*:
+
+```bash
+$ sudo docker run -d \
+  -v ~/mycroft-config:/home/mycroft/.config/mycroft \
+  -v ~/mycroft-web-cache:/var/tmp \
+  -v /mnt/mycroft/ipc:/tmp/mycroft/ipc \
+  -v mycroft_skills:/opt/mycroft/skills \
+  -v mycroft_skills_venv:/opt/mycroft-venv \
+  -v mycroft_skills_repo:/opt/mycroft \
+  -v ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse \
+  -v ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie \
+  -v /sys:/sys:ro \
+  --device /dev/snd \
+  --device /dev/gpiomem \
+  --group-add $(getent group audio | cut -d: -f3) \
+  --group-add $(getent group gpio | cut -d: -f3) \
+  --env PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
+  --env PULSE_COOKIE=/home/mycroft/.config/pulse/cookie \
+  --network host \
+  --name mycroft_skills \
+  smartgic/mycroft-skills:dev
+```
+
+We build the Ansible `prepi` [role](https://github.com/smartgic/ansible-role-prepi) to optimize and prepare the Raspberry Pi to receive Mycroft AI *(but not only)*.
 
 ### Pairing
 
