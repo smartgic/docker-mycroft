@@ -44,7 +44,6 @@ To allow data persistance, Docker volumes are required which will avoid to re-pa
 
 | Volume                  | Description                                         |
 | ---                     | ---                                                 |
-| `mycroft_cache`         | Mycroft AI cache                                    |
 | `mycroft_skills`        | Mycroft AI skills source code                       |
 | `mycroft_skills_repo`   | Mycroft AI skills repository cache                  |
 | `mycroft_skills_venv`   | Mycroft AI virtualenv for skills requirements       |
@@ -105,10 +104,10 @@ Seven *(7)* images needs to be build; `mycroft-base`, `mycroft-voice`, `mycroft-
 
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
-$ mkdir mycroft-config mycroft-web-cache mycroft-precise-models mycroft-ipc
-$ chown 1000:1000 mycroft-config mycroft-web-cache mycroft-precise-models mycroft-ipc
+$ mkdir mycroft-config mycroft-web-cache mycroft-precise-models mycroft-cache
+$ chown 1000:1000 mycroft-config mycroft-web-cache mycroft-precise-models mycroft-cache
 $ cd docker-mycroft
-$ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache MODELS_FOLDER=~/mycroft-precise-models IPC_FOLDER=~/mycroft-ipc COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose up -d
+$ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache MODELS_FOLDER=~/mycroft-precise-models CACHE_FOLDER=~/mycroft-cache COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose up -d
 ```
 
 Or using the `run.sh`, execute the script with the `-h` argument to display the help message.
@@ -127,7 +126,7 @@ Without `docker-compose` the container creation could be tedious and repetitive,
 $ sudo docker run -d \
   -v ~/mycroft-config:/home/mycroft/.config/mycroft \
   -v ~/mycroft-web-cache:/var/tmp \
-  -v ~/mycroft-ipc:/tmp/mycroft/ipc \
+  -v ~/mycroft-cache:/tmp/mycroft \
   -v mycroft_skills:/opt/mycroft/skills \
   -v mycroft_skills_venv:/opt/mycroft-venv \
   -v mycroft_skills_repo:/opt/mycroft \
@@ -145,18 +144,18 @@ $ sudo docker run -d \
 
 ### Raspberry Pi
 
-To reduce IOPS contention we recommend to use a `tmpfs` for `mycroft-ipc` directory, `tmpfs` will prevent write IO on the disk.
+To reduce IOPS contention we recommend to use a `tmpfs` for `mycroft-cache` directory, `tmpfs` will prevent write IO on the disk.
 
 ```bash
-$ sudo mkdir -p /mnt/mycroft/ipc
-$ echo "tmpfs /mnt/mycroft/ipc tmpfs nosuid,nodev,size=64M,mode=700,uid=1000,gid=1000 0 0" | sudo tee -a /etc/fstab
+$ sudo mkdir -p /mnt/mycroft
+$ echo "tmpfs /mnt/mycroft tmpfs nosuid,nodev,size=64M,mode=700,uid=1000,gid=1000 0 0" | sudo tee -a /etc/fstab
 $ sudo mount -a
 ```
 
 Make sure the user `UID` and `GID` match your user.
 
 ```bash
-$ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache MODELS_FOLDER=~/mycroft-precise-models IPC_FOLDER=/media/mycroft/ipc COMPOSE_HTTP_TIMEOUT=600 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose -f docker-compose.yml -f docker-compose.raspberrypi.yml up -d
+$ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache MODELS_FOLDER=~/mycroft-precise-models CACHE_FOLDER=/media/mycroft COMPOSE_HTTP_TIMEOUT=600 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose -f docker-compose.yml -f docker-compose.raspberrypi.yml up -d
 ```
 
 Remember, the Raspberry Pi is "slow" board so the `docker-compose` deployment could take longer than expected.
@@ -167,7 +166,7 @@ As mentioned previously, without `docker-compose` the container creation could b
 $ sudo docker run -d \
   -v ~/mycroft-config:/home/mycroft/.config/mycroft \
   -v ~/mycroft-web-cache:/var/tmp \
-  -v /mnt/mycroft/ipc:/tmp/mycroft/ipc \
+  -v /mnt/mycroft:/tmp/mycroft \
   -v mycroft_skills:/opt/mycroft/skills \
   -v mycroft_skills_venv:/opt/mycroft-venv \
   -v mycroft_skills_repo:/opt/mycroft \
