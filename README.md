@@ -100,7 +100,7 @@ Seven *(7)* images needs to be build; `mycroft-base`, `mycroft-voice`, `mycroft-
 
 ## How to use these images
 
-`docker-compose.yml` file provides an easy way to provision the Docker volumes and containers with the required configuration for each of them. `docker-compose` supports  environment file, check the `.env` *(`.env-raspberry` for Raspberry Pi)* files prior the execution to set your custom values.
+`docker-compose.yml` file provides an easy way to provision the Docker volumes and containers with the required configuration for each of them. `docker-compose` supports  environment file, check the `.env` *(`.env-raspberrypi` for Raspberry Pi)* files prior the execution to set your custom values.
 
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
