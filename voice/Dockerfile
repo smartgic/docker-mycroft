@@ -7,7 +7,7 @@ LABEL vendor=Smartgic.io \
     io.smartgic.is-beta="no" \
     io.smartgic.is-production="no" \
     io.smartgic.version="${TAG}" \
-    io.smartgic.release-date="2021-08-15"
+    io.smartgic.release-date="2021-10-28"
 
 ENV DEBIAN_FRONTEND noninteractive
 
