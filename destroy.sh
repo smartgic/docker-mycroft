@@ -65,10 +65,10 @@ for COMMAND in "docker" "docker-compose"; do
     command_exists "${COMMAND}"
 done
 
-# Remove mycroft-config, mycroft-web-cache, mycroft-precise-models and mycroft-ipc directories
-if [ -d ~/mycroft-config ] || [ -d ~/mycroft-web-cache ] || [ -d ~/mycroft-precise-models ] || [ -d ~/mycroft-ipc ]; then
-    rm -f ~/mycroft-config/* ~/mycroft-web-cache/* ~/mycroft-precise-models* ~/mycroft-ipc*
-    rmdir ~/mycroft-config ~/mycroft-web-cache ~/mycroft-precise-models ~/mycroft-ipc
+# Remove mycroft-config, mycroft-web-cache, mycroft-precise-models and mycroft-cache directories
+if [ -d ~/mycroft-config ] || [ -d ~/mycroft-web-cache ] || [ -d ~/mycroft-precise-models ] || [ -d ~/mycroft ]; then
+    rm -f ~/mycroft-config/* ~/mycroft-web-cache/* ~/mycroft-precise-models* ~/mycroft*
+    rmdir ~/mycroft-config ~/mycroft-web-cache ~/mycroft-precise-models ~/mycroft
 fi
 
 DOCKER_COMPOSE_OPTIONS=""

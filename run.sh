@@ -27,7 +27,7 @@ Options:
     -c      Specify the mycroft-config folder, default is ~/mycroft-config, assumes existing folder when manually provided
     -w      Specify the mycroft-web-cache folder, default is ~/mycroft-web-cache, assumes existing folder when manually provided
     -m      Specify the mycroft-precise-models folder, default is ~/mycroft-precise-models, assumes existing folder when manually provided
-    -i      Specify the mycroft-ipc folder, default is ~/mycroft-ipc, assumes existing folder when manually provided
+    -s      Specify the mycroft-cache folder, default is ~/mycroft-cache, assumes existing folder when manually provided
     -u      Execute this script as a simple user, make sure your user is part of the "docker" group
     '
     exit
@@ -43,7 +43,7 @@ do
         c) configfolder=${OPTARG};;
         w) webcachefolder=${OPTARG};;
         m) modelsfolder=${OPTARG};:
-        i) ipcfolder=${OPTARG};:
+        s) cachefolder=${OPTARG};:
         u) user="true";;
         h) help;;
     esac
@@ -87,7 +87,7 @@ esac
 #   - mycroft-config: Mycroft configuration file such as mycroft.conf
 #   - mycroft-web-cache: Configuration sent by Selene backend to the device
 #   - mycroft-precise-models: Custom models to use with precise or precise-lite
-#   - mycroft-ipc: Inter Process Communication to share information across Mycroft components
+#   - mycroft-cache: Cache directory used by Mycroft components to share data
 if [ -z $configfolder ]; then
     export CONFIG_FOLDER=~/mycroft-config
     mkdir -p ${CONFIG_FOLDER}
@@ -109,12 +109,12 @@ if [ -z $modelsfolder ]; then
 else
     export MODELS_FOLDER=$modelsfolder
 fi
-if [ -z $ipcfolder ]; then
-    export IPC_FOLDER=~/mycroft-ipc
-    mkdir -p ${IPC_FOLDER}
-    chown 1000:1000 ${IPC_FOLDER}
+if [ -z $cachefolder ]; then
+    export CACHE_FOLDER=~/mycroft-cache
+    mkdir -p ${CACHE_FOLDER}
+    chown 1000:1000 ${CACHE_FOLDER}
 else
-    export IPC_FOLDER=$ipcfolder
+    export CACHE_FOLDER=$cachefolder
 fi
 
 # Variables used by docker-compose during creation process.
