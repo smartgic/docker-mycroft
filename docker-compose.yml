@@ -2,9 +2,6 @@
 version: "3.6"
 
 volumes:
-  mycroft_ipc:
-    name: mycroft_ipc
-    driver: local
   mycroft_cache:
     name: mycroft_cache
     driver: local
@@ -27,7 +24,7 @@ services:
     network_mode: host
     volumes:
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
-      - mycroft_ipc:/tmp/mycroft/ipc
+      - ${IPC_FOLDER}:/tmp/mycroft/ipc
 
   mycroft_enclosure:
     container_name: mycroft_enclosure
@@ -37,7 +34,7 @@ services:
     network_mode: host
     volumes:
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
-      - mycroft_ipc:/tmp/mycroft/ipc
+      - ${IPC_FOLDER}:/tmp/mycroft/ipc
     depends_on:
       - mycroft_bus
 
@@ -49,7 +46,7 @@ services:
     network_mode: host
     volumes:
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
-      - mycroft_ipc:/tmp/mycroft/ipc
+      - ${IPC_FOLDER}:/tmp/mycroft/ipc
       - mycroft_skills_venv:/opt/mycroft-venv
       - mycroft_skills_repo:/opt/mycroft
       - mycroft_skills:/opt/mycroft/skills
@@ -69,7 +66,7 @@ services:
       PULSE_COOKIE: /home/mycroft/.config/pulse/cookie
     volumes:
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
-      - mycroft_ipc:/tmp/mycroft/ipc
+      - ${IPC_FOLDER}:/tmp/mycroft/ipc
       - mycroft_cache:/tmp/mycroft/cache
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
@@ -93,7 +90,7 @@ services:
       - ${MODELS_FOLDER}:/home/mycroft/models
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
-      - mycroft_ipc:/tmp/mycroft/ipc
+      - ${IPC_FOLDER}:/tmp/mycroft/ipc
     depends_on:
       - mycroft_bus
       - mycroft_audio
@@ -115,7 +112,7 @@ services:
       - ${WEBCACHE_FOLDER}:/var/tmp
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
-      - mycroft_ipc:/tmp/mycroft/ipc
+      - ${IPC_FOLDER}:/tmp/mycroft/ipc
       - mycroft_cache:/tmp/mycroft/cache
       - mycroft_skills_venv:/opt/mycroft-venv
       - mycroft_skills_repo:/opt/mycroft
