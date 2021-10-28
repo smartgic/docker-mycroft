@@ -100,17 +100,17 @@ Seven *(7)* images needs to be build; `mycroft-base`, `mycroft-voice`, `mycroft-
 
 ## How to use these images
 
-`docker-compose.yml` file provides an easy way to provision the Docker volumes and containers with the required configuration for each of them. The `run.sh` script is a wrapper for `docker-compose` with variables encapsulation.
+`docker-compose.yml` file provides an easy way to provision the Docker volumes and containers with the required configuration for each of them. `docker-compose` supports  environment file, check the `.env` *(`.env-raspberry` for Raspberry Pi)* files prior the execution to set your custom values.
 
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
 $ mkdir mycroft-config mycroft-web-cache mycroft-precise-models mycroft-cache
 $ chown 1000:1000 mycroft-config mycroft-web-cache mycroft-precise-models mycroft-cache
 $ cd docker-mycroft
-$ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache MODELS_FOLDER=~/mycroft-precise-models CACHE_FOLDER=~/mycroft-cache COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose up -d
+$ docker-compose --env-file .env up -d
 ```
 
-Or using the `run.sh`, execute the script with the `-h` argument to display the help message.
+Or use the `run.sh` which is a `docker-compose` wrapper with variables, execute the script with the `-h` argument to display the help message.
 
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
@@ -155,7 +155,7 @@ $ sudo mount -a
 Make sure the user `UID` and `GID` match your user.
 
 ```bash
-$ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache MODELS_FOLDER=~/mycroft-precise-models CACHE_FOLDER=/media/mycroft COMPOSE_HTTP_TIMEOUT=600 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose -f docker-compose.yml -f docker-compose.raspberrypi.yml up -d
+$ docker-compose --env-file .env-raspberrypi -f docker-compose.yml -f docker-compose.raspberrypi.yml up -d
 ```
 
 Remember, the Raspberry Pi is "slow" board so the `docker-compose` deployment could take longer than expected.
