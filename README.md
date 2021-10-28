@@ -106,7 +106,7 @@ Seven *(7)* images needs to be build; `mycroft-base`, `mycroft-voice`, `mycroft-
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
 $ mkdir mycroft-config mycroft-web-cache mycroft-precise-models mycroft-ipc
-$ chown 1000:1000 mycroft-config mycroft-web-cache mycroft-precise-models
+$ chown 1000:1000 mycroft-config mycroft-web-cache mycroft-precise-models mycroft-ipc
 $ cd docker-mycroft
 $ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache MODELS_FOLDER=~/mycroft-precise-models IPC_FOLDER=~/mycroft-ipc COMPOSE_HTTP_TIMEOUT=120 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR VERSION=dev docker-compose up -d
 ```
@@ -161,7 +161,7 @@ $ CONFIG_FOLDER=~/mycroft-config WEBCACHE_FOLDER=~/mycroft-web-cache MODELS_FOLD
 
 Remember, the Raspberry Pi is "slow" board so the `docker-compose` deployment could take longer than expected.
 
-Without `docker-compose` the container creation could be tedious and repetitive, *(example of `mycroft_skills` container)*:
+As mentioned previously, without `docker-compose` the container creation could be tedious and repetitive, *(example of `mycroft_skills` container on a Raspberry Pi)*:
 
 ```bash
 $ sudo docker run -d \
