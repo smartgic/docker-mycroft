@@ -217,7 +217,7 @@ Add these lines to `mycroft.conf` in `~/mycroft-config` directory.
 }
 ```
 
-Once the configuration has been update, `mycroft_voice` container needs to be restarted.
+Once the configuration has been updated, `mycroft_voice` container needs to be restarted.
 
 ```bash
 $ sudo docker restart mycroft_voice
