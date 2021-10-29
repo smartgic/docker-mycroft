@@ -13,6 +13,9 @@
   * [How to build these images](#how-to-build-these-images)
   * [How to use these images](#how-to-use-these-images)
     + [Raspberry Pi](#raspberry-pi)
+    + [Precise-lite engine usage](#precise-lite-engine-usage)
+      - [Download the models](#download-the-models)
+      - [Configure Mycroft to use `precise-lite` engine](#configure-mycroft-to-use--precise-lite--engine)
     + [Pairing](#pairing)
     + [CLI access](#cli-access)
     + [Skills management](#skills-management)
@@ -185,6 +188,42 @@ $ sudo docker run -d \
 ```
 
 We build the Ansible `prepi` [role](https://github.com/smartgic/ansible-role-prepi) to optimize and prepare the Raspberry Pi to receive Mycroft AI *(but not only)*.
+
+### Precise-lite engine usage
+
+[OpenVoiceOS](https://community.mycroft.ai/t/openvoiceos-a-bare-minimal-production-type-of-os-based-on-buildroot/4708/312) released a lighter version of `precise` engine; `precise-lite`. The requirements have been embedded within the `mycroft_voice` container but few extra steps are required.
+
+#### Download the models
+
+```bash
+$ cd ~/mycroft-precise-models
+$ git clone https://github.com/OpenVoiceOS/precise-lite-models
+```
+
+#### Configure Mycroft to use `precise-lite` engine
+
+Add these lines to `mycroft.conf` in `~/mycroft-config` directory.
+
+```json
+{
+  "hotwords": {
+    "hey mycroft": {
+      "module": "ovos-precise-lite",
+      "model": "~/models/precise-lite-models/wakewords/en/hey_mycroft.tflite",
+      "sensitivity": 0.5,
+      "trigger_level": 3
+    }
+  }
+}
+```
+
+Once the configuration has been update, `mycroft_voice` container needs to be restarted.
+
+```bash
+$ sudo docker restart mycroft_voice
+```
+
+*No support will be provided by [Smart'Gic](https://smartgic.io) about this engine.*
 
 ### Pairing
 
