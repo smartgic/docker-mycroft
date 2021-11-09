@@ -42,8 +42,8 @@ do
         x) xdg=${OPTARG};;
         c) configfolder=${OPTARG};;
         w) webcachefolder=${OPTARG};;
-        m) modelsfolder=${OPTARG};:
-        s) cachefolder=${OPTARG};:
+        m) modelsfolder=${OPTARG};;
+        s) cachefolder=${OPTARG};;
         u) user="true";;
         h) help;;
     esac
@@ -80,7 +80,7 @@ done
 #  for GPIO pins like the Pi does.
 case $(uname -m) in
     armv6l | armv7l | aarch64)
-        raspberrypi="true" ;;
+        raspberrypi="true";;
 esac
 
 # Create Docker mount directories.
