@@ -72,7 +72,7 @@ To allow data persistance, Docker volumes are required which will avoid to re-pa
 
 ## Requirements
 
-Docker is of course required and `docker-compose` is a nice to have to simplify the whole process.
+Docker is of course required and `docker-compose` is a nice to have to simplify the whole process by using the `docker-compose.yml` files.
 
 **PulseAudio is a requirement and has to be up and running on the host to expose a socket and allow the containers to use microphone and speakers.**
 
