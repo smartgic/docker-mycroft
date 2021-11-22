@@ -66,6 +66,7 @@ services:
       - ${CACHE_FOLDER}:/tmp/mycroft
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
+      - mycroft_skills:/opt/mycroft/skills
     depends_on:
       - mycroft_bus
 
