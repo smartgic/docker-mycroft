@@ -3,7 +3,7 @@
 [![Mycroft AI version](https://img.shields.io/badge/Mycroft%20AI-21.2.1-green.svg?style=flat&logoColor=FFFFFF&color=87567)](https://mycroft.ai)
 [![Debian version](https://img.shields.io/badge/Debian-Buster-green.svg?style=flat&logoColor=FFFFFF&color=87567)](https://www.debian.org)
 [![Docker pulls](https://img.shields.io/docker/pulls/smartgic/mycroft-base.svg?style=flat&logo=docker&logoColor=FFFFFF&color=87567)](https://hub.docker.com/r/smartgic/mycroft-base)
-[![Discord](https://img.shields.io/discord/809074036733902888)](https://discord.gg/Vu7Wmd9j) 
+[![Discord](https://img.shields.io/discord/809074036733902888)](https://discord.gg/sHM3Duz5d3) 
 
 - [Mycroft AI Voice Assistant running on Docker](#mycroft-ai-voice-assistant-running-on-docker)
   * [What is Mycroft AI?](#what-is-mycroft-ai-)
