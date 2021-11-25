@@ -14,7 +14,7 @@ WORKDIR /home/mycroft/core
 USER root
 
 RUN apt-get update && \
-    apt-get install libffi-dev libssl-dev sudo mpg123 -y && \
+    apt-get install libffi-dev libssl-dev sudo mpg123 alsa-utils pulseaudio-utils -y && \
     apt-get clean && \
     echo "mycroft ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/010_mycroft-nopasswd && \
     chmod 440 /etc/sudoers.d/010_mycroft-nopasswd && \
