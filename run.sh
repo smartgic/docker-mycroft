@@ -69,9 +69,9 @@ command_exists() {
     fi
 }
 
-# Few commands are required to continue such as docker and docker-compose
+# Few commands are required to continue such as docker, docker-compose and xauth
 # The check if perform whith the command_exists function from above.
-for COMMAND in "docker" "docker-compose"; do
+for COMMAND in "docker" "docker-compose" "xauth"; do
     command_exists "${COMMAND}"
 done
 
@@ -136,10 +136,18 @@ else
     export XDG_RUNTIME_DIR="$xdg"
 fi
 
+# Generate X authentication token for Docker
+DOCKER_XAUTH=~/.docker.xauth
+if [ ! -f $DOCKER_XAUTH ]; then
+    touch $DOCKER_XAUTH
+    xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $DOCKER_XAUTH nmerge -
+    chown 1000:1000 $DOCKER_XAUTH
+fi
+
 # Execute docker-compose using the docker-compose.yml file from the
 # same directory, adding the Raspberry Pi override if necessary.
 if [ -z $raspberrypi ]; then
-    docker-compose -f docker-compose.yml up -d
+    docker-compose --env-file .env -f docker-compose.yml up -d
 else
-    docker-compose -f docker-compose.yml -f docker-compose.raspberrypi.yml up -d
+    docker-compose --env-file .env-raspberrypi -f docker-compose.yml -f docker-compose.raspberrypi.yml up -d
 fi

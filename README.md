@@ -42,6 +42,7 @@ Mycroft AI is a complex piece of software which has several core services. These
 | `mycroft_voice`     | Mycroft AI wake word & voice detection |
 | `mycroft_skills`    | Mycroft AI skills management           |
 | `mycroft_cli`       | Mycroft AI command line                |
+| `mycroft_gui`       | Mycroft AI graphical user interface    |
 
 To allow data persistance, Docker volumes are required which will avoid to re-pair the device, re-install the skills, etc... everytime that the the container is re-created.
 
@@ -99,7 +100,7 @@ Other than the `base` image, only the `TAG` argument is available.
 $ docker build -t smartgic/mycroft-audio:dev --build-arg TAG=dev audio/
 ```
 
-Seven *(7)* images needs to be build; `mycroft-base`, `mycroft-voice`, `mycroft-skills`, `mycroft-cli`, `mycroft-bus`, `mycroft-enclosure`, `mycroft-audio`.
+Eight *(8)* images needs to be build; `mycroft-base`, `mycroft-voice`, `mycroft-skills`, `mycroft-cli`, `mycroft-bus`, `mycroft-enclosure`, `mycroft-audio`, `mycroft_gui`.
 
 ## How to use these images
 
@@ -143,6 +144,15 @@ $ sudo docker run -d \
   --network host \
   --name mycroft_skills \
   smartgic/mycroft-skills:dev
+```
+
+### Mycroft GUI
+
+The container needs to be authenticated to access the X Server and run the GUI. One way to do it is to use `xauth` *(part of the `xauth` package on Debian/Ubuntu)* which will generate a X authentication token. This token will have to be mounted as a volume within the container to be then used via the `XAUTHORITY` environment variable.
+
+```bash
+$ touch ~/.docker.xauth
+$ xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f ~/.docker.xauth nmerge -
 ```
 
 ### Raspberry Pi
