@@ -12,6 +12,7 @@
   * [Requirements](#requirements)
   * [How to build these images](#how-to-build-these-images)
   * [How to use these images](#how-to-use-these-images)
+    + [Mycroft GUI](#mycroft-gui)
     + [Raspberry Pi](#raspberry-pi)
     + [Precise-lite engine usage](#precise-lite-engine-usage)
       - [Download the models](#download-the-models)
