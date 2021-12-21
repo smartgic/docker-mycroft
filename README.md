@@ -130,7 +130,7 @@ Without `docker-compose` the container creation could be tedious and repetitive,
 ```bash
 $ sudo docker run -d \
   -v ~/mycroft-config:/home/mycroft/.config/mycroft \
-  -v ~/mycroft-web-cache:/var/tmp \
+  -v ~/mycroft-web-cache:/home/mycroft/.cache/mycroft \
   -v ~/mycroft-cache:/tmp/mycroft \
   -v mycroft_skills:/opt/mycroft/skills \
   -v mycroft_skills_venv:/opt/mycroft-venv \
@@ -189,7 +189,7 @@ As mentioned previously, without `docker-compose` the container creation could b
 ```bash
 $ sudo docker run -d \
   -v ~/mycroft-config:/home/mycroft/.config/mycroft \
-  -v ~/mycroft-web-cache:/var/tmp \
+  -v ~/mycroft-web-cache:/home/mycroft/.cache/mycroft \
   -v /mnt/mycroft:/tmp/mycroft \
   -v mycroft_skills:/opt/mycroft/skills \
   -v mycroft_skills_venv:/opt/mycroft-venv \

@@ -93,7 +93,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
-      - ${WEBCACHE_FOLDER}:/var/tmp
+      - ${WEBCACHE_FOLDER}:/home/mycroft/.cache/mycroft
       - ${MODELS_FOLDER}:/home/mycroft/models
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
@@ -118,7 +118,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
-      - ${WEBCACHE_FOLDER}:/var/tmp
+      - ${WEBCACHE_FOLDER}:/home/mycroft/.cache/mycroft
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
       - ${CACHE_FOLDER}:/tmp/mycroft
