@@ -20,6 +20,8 @@ services:
     image: smartgic/mycroft-bus:${VERSION}
     network_mode: host
     volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
       - ${CACHE_FOLDER}:/tmp/mycroft
 
@@ -30,6 +32,8 @@ services:
     image: smartgic/mycroft-enclosure:${VERSION}
     network_mode: host
     volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
       - ${CACHE_FOLDER}:/tmp/mycroft
     depends_on:
@@ -42,6 +46,8 @@ services:
     image: smartgic/mycroft-cli:${VERSION}
     network_mode: host
     volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
       - ${CACHE_FOLDER}:/tmp/mycroft
       - mycroft_skills_venv:/opt/mycroft-venv
@@ -62,6 +68,8 @@ services:
       PULSE_SERVER: unix:${XDG_RUNTIME_DIR}/pulse/native
       PULSE_COOKIE: /home/mycroft/.config/pulse/cookie
     volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
       - ${CACHE_FOLDER}:/tmp/mycroft
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
@@ -82,6 +90,8 @@ services:
       PULSE_SERVER: unix:${XDG_RUNTIME_DIR}/pulse/native
       PULSE_COOKIE: /home/mycroft/.config/pulse/cookie
     volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
       - ${WEBCACHE_FOLDER}:/var/tmp
       - ${MODELS_FOLDER}:/home/mycroft/models
@@ -105,6 +115,8 @@ services:
       PULSE_COOKIE: /home/mycroft/.config/pulse/cookie
       CRYPTOGRAPHY_DONT_BUILD_RUST: 1
     volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
       - ${WEBCACHE_FOLDER}:/var/tmp
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
@@ -126,6 +138,8 @@ services:
       DISPLAY: :0
       XAUTHORITY: /tmp/.docker.xauth
     volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
       - ${X11_SOCKET}:/tmp/.X11-unix
       - ${XAUTHORITY}:/tmp/.docker.xauth
       - mycroft_skills:/opt/mycroft/skills

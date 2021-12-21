@@ -138,6 +138,8 @@ $ sudo docker run -d \
   -v ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse \
   -v ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie \
   -v /sys:/sys:ro \
+  -v /etc/timezone:/etc/timezone:ro \
+  -v /etc/localtime:/etc/localtime:ro \
   --device /dev/snd \
   --group-add $(getent group audio | cut -d: -f3) \
   --env PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
@@ -187,6 +189,8 @@ $ sudo docker run -d \
   -v ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse \
   -v ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie \
   -v /sys:/sys:ro \
+  -v /etc/timezone:/etc/timezone:ro \
+  -v /etc/localtime:/etc/localtime:ro \
   --device /dev/snd \
   --device /dev/gpiomem \
   --group-add $(getent group audio | cut -d: -f3) \
