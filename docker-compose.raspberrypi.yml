@@ -7,5 +7,5 @@ services:
   mycroft_gui:
     devices:
       - /dev/vchiq
-    group-add:
+    group_add:
       - $RENDER_GID
