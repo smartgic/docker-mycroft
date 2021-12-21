@@ -20,10 +20,12 @@ RUN apt-get update && \
   apt-get install -y git-core g++ cmake extra-cmake-modules gettext pkg-config \
   qml-module-qtwebengine pkg-kde-tools qtbase5-dev qtdeclarative5-dev libkf5kio-dev \
   libqt5websockets5-dev libkf5i18n-dev libkf5notifications-dev libkf5plasma-dev \
-  libqt5webview5-dev qtmultimedia5-dev kirigami2-dev qml-module-qtmultimedia && \
+  libqt5webview5-dev qtmultimedia5-dev kirigami2-dev qml-module-qtmultimedia mesa-utils && \
   apt-get autoremove -y && \
   apt-get clean && \
-  useradd --no-log-init mycroft -m
+  useradd --no-log-init mycroft -m && \
+  groupdel kvm && \
+  groupdel render
 
 RUN git clone https://github.com/MycroftAI/mycroft-gui.git \
   ${MYCROFT_DIR}/gui -b $BRANCH && \

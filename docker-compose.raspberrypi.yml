@@ -3,3 +3,9 @@ services:
   mycroft_skills:
     devices:
       - /dev/gpiomem
+
+  mycroft_gui:
+    devices:
+      - /dev/vchiq
+    group-add:
+      - $RENDER_GID

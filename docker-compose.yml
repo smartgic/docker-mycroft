@@ -127,13 +127,15 @@ services:
       - mycroft_skills:/opt/mycroft/skills
       - /sys:/sys:ro
     depends_on:
-      - mycroft_bus
+      - mycroft_enclosure
 
   mycroft_gui:
     container_name: mycroft_gui
     restart: unless-stopped
     image: smartgic/mycroft-gui:${VERSION}
     network_mode: host
+    devices:
+      - /dev/dri
     environment:
       DISPLAY: :0
       XAUTHORITY: /tmp/.docker.xauth

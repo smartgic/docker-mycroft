@@ -158,6 +158,14 @@ $ touch ~/.docker.xauth
 $ xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f ~/.docker.xauth nmerge -
 ```
 
+The `mycroft_gui` container requires an access to a X server to display information. In order to leverage OpenGL and provide better performances, the container needs to have the `render` group added to it.
+
+```bash
+  --group-add $(getent group render | cut -d: -f3)
+```
+
+When using `docker-compose` on a Raspberry Pi, the `render` group ID is hardcoded into `.env-raspberrypi` environment file, if `107` is not the GID of `render` group on your system then the update the `.env-raspberrypi` file with the correct value.
+
 ### Raspberry Pi
 
 To reduce IOPS contention we recommend to use a `tmpfs` for `mycroft-cache` directory, `tmpfs` will prevent write IO on the disk.
