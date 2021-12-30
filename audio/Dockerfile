@@ -21,7 +21,9 @@ RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key
   apt-get install -y alsa-utils libasound2-plugins mpg123 pulseaudio-utils mimic vlc && \
   apt-get -y autoremove && \
   apt-get clean && \
-  usermod -a -G audio mycroft
+  usermod -a -G audio mycroft && \
+  mkdir -p /opt/mycroft/preloaded_cache && \
+  chown mycroft:mycroft -R /opt/mycroft
 
 USER mycroft
 
