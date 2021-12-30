@@ -292,6 +292,7 @@ $ msm install https://github.com/smartgic/mycroft-wakeword-led-gpio-skill.git
 
 * [Impossible to update configuration because device isn't paired](https://github.com/smartgic/docker-mycroft/issues/5)
 * [[Errno 13] Permission denied: '/home/mycroft/.config/mycroft/skills](https://github.com/smartgic/docker-mycroft/issues/13)
+* [Mimic2 cache is local to the `mycroft_audio` container](https://github.com/smartgic/docker-mycroft/issues/24)
 
 ## Support
 
