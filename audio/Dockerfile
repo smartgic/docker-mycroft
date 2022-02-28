@@ -31,7 +31,6 @@ COPY files/asoundrc /home/mycroft/.asoundrc
 
 RUN mkdir -p /home/mycroft/.config/pulse && \
   pip3 install -r /home/mycroft/core/requirements/extra-audiobackend.txt boto3 \
-  git+https://github.com/JarbasAl/py_mplayer.git && \
   rm -rf ~/.cache
 
 ENTRYPOINT ["python", "-m", "mycroft.audio"]
