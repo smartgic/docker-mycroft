@@ -3,6 +3,8 @@ services:
   mycroft_skills:
     devices:
       - /dev/gpiomem
+    group_add:
+      - $GPIO_GID
 
   mycroft_gui:
     devices:
