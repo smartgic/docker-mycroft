@@ -145,6 +145,7 @@ $ sudo docker run -d \
   --env PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
   --env PULSE_COOKIE=/home/mycroft/.config/pulse/cookie \
   --network host \
+  --ipc host \
   --name mycroft_skills \
   smartgic/mycroft-skills:dev
 ```
@@ -206,6 +207,7 @@ $ sudo docker run -d \
   --env PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
   --env PULSE_COOKIE=/home/mycroft/.config/pulse/cookie \
   --network host \
+  --ipc host \
   --name mycroft_skills \
   smartgic/mycroft-skills:dev
 ```
