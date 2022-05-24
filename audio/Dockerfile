@@ -22,7 +22,7 @@ RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key
   apt-get -y autoremove && \
   apt-get clean && \
   usermod -a -G audio mycroft && \
-  mkdir -p /opt/mycroft/preloaded_cache && \
+  mkdir -p /opt/mycroft/{preloaded_cache,voices} && \
   chown mycroft:mycroft -R /opt/mycroft
 
 USER mycroft
