@@ -7,7 +7,7 @@ LABEL vendor=Smartgic.io \
   io.smartgic.is-beta="no" \
   io.smartgic.is-production="no" \
   io.smartgic.version="${TAG}" \
-  io.smartgic.release-date="2021-10-28"
+  io.smartgic.release-date="2022-06-30"
 
 WORKDIR /home/mycroft/core
 
@@ -18,7 +18,7 @@ RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key
   echo "deb http://forslund.github.io/mycroft-desktop-repo bionic main" \
   > /etc/apt/sources.list.d/mycroft-mimic.list && \
   apt-get update && \
-  apt-get install -y alsa-utils libasound2-plugins mpg123 pulseaudio-utils mimic vlc && \
+  apt-get install -y alsa-utils libasound2-plugins mpg123 pulseaudio-utils mimic vlc libespeak-ng1 && \
   apt-get -y autoremove && \
   apt-get clean && \
   usermod -a -G audio mycroft && \
@@ -30,7 +30,8 @@ USER mycroft
 COPY files/asoundrc /home/mycroft/.asoundrc
 
 RUN mkdir -p /home/mycroft/.config/pulse && \
-  pip3 install -r /home/mycroft/core/requirements/extra-audiobackend.txt boto3 && \
+  pip3 install -r /home/mycroft/core/requirements/extra-audiobackend.txt boto3 \
+  mycroft-plugin-tts-mimic3[all] && \
   rm -rf ~/.cache
 
 ENTRYPOINT ["python", "-m", "mycroft.audio"]
