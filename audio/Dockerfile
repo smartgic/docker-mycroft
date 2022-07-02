@@ -30,7 +30,7 @@ USER mycroft
 COPY files/asoundrc /home/mycroft/.asoundrc
 
 RUN mkdir -p /home/mycroft/.config/pulse && \
-  pip3 install -r /home/mycroft/core/requirements/extra-audiobackend.txt boto3 \
+  pip3 install --no-cache-dir -r /home/mycroft/core/requirements/extra-audiobackend.txt boto3 \
   mycroft-plugin-tts-mimic3[all] && \
   rm -rf ~/.cache
 

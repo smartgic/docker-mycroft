@@ -27,7 +27,7 @@ RUN apt-get update && \
 USER mycroft
 
 RUN ln -s /opt/mycroft/skills /home/mycroft/core/skills && \
-    pip install -r /home/mycroft/core/requirements/extra-mark1.txt && \
+    pip install --no-cache-dir -r /home/mycroft/core/requirements/extra-mark1.txt && \
     mkdir -p /home/mycroft/.config/mycroft && \
     rm -rf ~/.cache
 
