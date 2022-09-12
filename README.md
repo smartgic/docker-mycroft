@@ -304,3 +304,8 @@ $ msm install https://github.com/smartgic/mycroft-wakeword-led-gpio-skill.git
 * [Contribute to Mycroft AI](https://mycroft.ai/contribute)
 * [Report Mycroft AI core bugs](https://github.com/MycroftAI/mycroft-core/issues)
 * [Report bugs related to these Docker images](https://github.com/smartgic/docker-mycroft/issues)
+
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
