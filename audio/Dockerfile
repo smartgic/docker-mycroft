@@ -29,6 +29,10 @@ USER mycroft
 
 COPY files/asoundrc /home/mycroft/.asoundrc
 
+ARG TARGETPLATFORM
+
+RUN if [ "${TARGETPLATFORM}" = "linux/arm/v7" ]; then pip3 install -f 'https://synesthesiam.github.io/prebuilt-apps/' onnxruntime; fi
+
 RUN mkdir -p /home/mycroft/.config/pulse && \
   pip3 install --no-cache-dir -r /home/mycroft/core/requirements/extra-audiobackend.txt boto3==1.24.74 \
   mycroft-plugin-tts-mimic3[all] && \
