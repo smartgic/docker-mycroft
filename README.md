@@ -3,7 +3,7 @@
 [![Mycroft AI version](https://img.shields.io/badge/Mycroft%20AI-21.2.2-green.svg?style=flat&logoColor=FFFFFF&color=87567)](https://mycroft.ai)
 [![Debian version](https://img.shields.io/badge/Debian-Bullseye-green.svg?style=flat&logoColor=FFFFFF&color=87567)](https://www.debian.org)
 [![Docker pulls](https://img.shields.io/docker/pulls/smartgic/mycroft-base.svg?style=flat&logo=docker&logoColor=FFFFFF&color=87567)](https://hub.docker.com/r/smartgic/mycroft-base)
-[![Discord](https://img.shields.io/discord/809074036733902888)](https://discord.gg/sHM3Duz5d3) 
+[![Discord](https://img.shields.io/discord/809074036733902888)](https://discord.gg/sHM3Duz5d3)
 
 - [Mycroft AI Voice Assistant running on Docker](#mycroft-ai-voice-assistant-running-on-docker)
   * [What is Mycroft AI?](#what-is-mycroft-ai-)
@@ -109,8 +109,8 @@ Eight *(8)* images needs to be build; `mycroft-base`, `mycroft-voice`, `mycroft-
 
 ```bash
 $ git clone https://github.com/smartgic/docker-mycroft.git
-$ mkdir mycroft-config mycroft-web-cache mycroft-precise-models mycroft-cache
-$ chown 1000:1000 mycroft-config mycroft-web-cache mycroft-precise-models mycroft-cache
+$ mkdir mycroft-config mycroft-web-cache mycroft-precise-models mycroft-cache mycroft-mimic3-voices
+$ chown 1000:1000 mycroft-config mycroft-web-cache mycroft-precise-models mycroft-cache mycroft-mimic3-voices
 $ cd docker-mycroft
 $ docker-compose --env-file .env up -d
 ```

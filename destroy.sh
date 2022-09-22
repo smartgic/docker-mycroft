@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2021 Gaëtan Trellu (goldyfruit) <gaetan.trellu@smartgic.io>.
+# Copyright 2022 Gaëtan Trellu (goldyfruit) <gaetan.trellu@smartgic.io>.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -65,10 +65,10 @@ for COMMAND in "docker" "docker-compose"; do
     command_exists "${COMMAND}"
 done
 
-# Remove mycroft-config, mycroft-web-cache, mycroft-precise-models and mycroft-cache directories
-if [ -d ~/mycroft-config ] || [ -d ~/mycroft-web-cache ] || [ -d ~/mycroft-precise-models ] || [ -d ~/mycroft ]; then
-    rm -f ~/mycroft-config/* ~/mycroft-web-cache/* ~/mycroft-precise-models* ~/mycroft*
-    rmdir ~/mycroft-config ~/mycroft-web-cache ~/mycroft-precise-models ~/mycroft
+# Remove mycroft-config, mycroft-web-cache, mycroft-precise-models, mycroft-cache and mycroft-mimic3-voices directories
+if [ -d ~/mycroft-config ] || [ -d ~/mycroft-web-cache ] || [ -d ~/mycroft-precise-models ] || [ -d ~/mycroft-cache ] || [ -d ~/mycroft-mimic3-voices ]; then
+    rm -f ~/mycroft-config/* ~/mycroft-web-cache/* ~/mycroft-precise-models/* ~/mycroft-cache/* ~/mycroft-mimic3-voices/*
+    rmdir ~/mycroft-config ~/mycroft-web-cache ~/mycroft-precise-models ~/mycroft-cache ~/mycroft-mimic3-voices
 fi
 
 DOCKER_COMPOSE_OPTIONS=""

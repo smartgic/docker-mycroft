@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2021 Gaëtan Trellu (goldyfruit) <gaetan.trellu@smartgic.io>.
+# Copyright 2022 Gaëtan Trellu (goldyfruit) <gaetan.trellu@smartgic.io>.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ Options:
     -w      Specify the mycroft-web-cache folder, default is ~/mycroft-web-cache, assumes existing folder when manually provided
     -m      Specify the mycroft-precise-models folder, default is ~/mycroft-precise-models, assumes existing folder when manually provided
     -s      Specify the mycroft-cache folder, default is ~/mycroft-cache, assumes existing folder when manually provided
+    -v      Specify the mycroft-mimic3-voices folder, default is ~/mycroft-mimic3-voices, assumes existing folder when manually provided
     -u      Execute this script as a simple user, make sure your user is part of the "docker" group
     '
     exit
@@ -44,6 +45,7 @@ do
         w) webcachefolder=${OPTARG};;
         m) modelsfolder=${OPTARG};;
         s) cachefolder=${OPTARG};;
+        v) voicesfolder=${OPTARG};;
         u) user="true";;
         h) help;;
     esac
@@ -88,6 +90,7 @@ esac
 #   - mycroft-web-cache: Configuration sent by Selene backend to the device
 #   - mycroft-precise-models: Custom models to use with precise or precise-lite
 #   - mycroft-cache: Cache directory used by Mycroft components to share data
+#   - mycroft-mimic3-voices: Voices downloaded by Mimic3
 if [ -z $configfolder ]; then
     export CONFIG_FOLDER=~/mycroft-config
     mkdir -p ${CONFIG_FOLDER}
@@ -115,6 +118,13 @@ if [ -z $cachefolder ]; then
     chown 1000:1000 ${CACHE_FOLDER}
 else
     export CACHE_FOLDER=$cachefolder
+fi
+if [ -z $voicesfolder ]; then
+    export MIMIC3_VOICES_FOLDER=~/mycroft-mimic3-voices
+    mkdir -p ${MIMIC3_VOICES_FOLDER}
+    chown 1000:1000 ${MIMIC3_VOICES_FOLDER}
+else
+    export MIMIC3_VOICES_FOLDER=$cachefolder
 fi
 
 # Variables used by docker-compose during creation process.
