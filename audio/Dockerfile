@@ -7,7 +7,7 @@ LABEL vendor=Smartgic.io \
   io.smartgic.is-beta="no" \
   io.smartgic.is-production="no" \
   io.smartgic.version="${TAG}" \
-  io.smartgic.release-date="2022-09-16"
+  io.smartgic.release-date="2022-09-22"
 
 WORKDIR /home/mycroft/core
 
@@ -34,6 +34,7 @@ ARG TARGETPLATFORM
 RUN if [ "${TARGETPLATFORM}" = "linux/arm/v7" ]; then pip3 install -f 'https://synesthesiam.github.io/prebuilt-apps/' onnxruntime; fi
 
 RUN mkdir -p /home/mycroft/.config/pulse && \
+  mkdir -p /home/mycroft/.local/share/mycroft/mimic3/voices && \
   pip3 install --no-cache-dir -r /home/mycroft/core/requirements/extra-audiobackend.txt boto3==1.24.74 \
   mycroft-plugin-tts-mimic3[all] && \
   rm -rf ~/.cache

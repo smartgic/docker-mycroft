@@ -76,6 +76,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
       - ${CACHE_FOLDER}:/tmp/mycroft
+      - ${MIMIC3_VOICES_FOLDER}:/home/mycroft/.local/share/mycroft/mimic3/voices
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
       - mycroft_skills:/opt/mycroft/skills
@@ -100,7 +101,6 @@ services:
       - ${CONFIG_FOLDER}:/home/mycroft/.config/mycroft
       - ${WEBCACHE_FOLDER}:/home/mycroft/.cache/mycroft
       - ${MODELS_FOLDER}:/home/mycroft/models
-      - ${MIMIC3_VOICES_FOLDER}:/home/mycroft/.local/share/mycroft/mimic3/voices
       - ~/.config/pulse/cookie:/home/mycroft/.config/pulse/cookie:ro
       - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse:ro
       - ${CACHE_FOLDER}:/tmp/mycroft
