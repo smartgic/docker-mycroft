@@ -1,3 +1,5 @@
+# Please visit https://github.com/OpenVoiceOS/ovos-docker as Mycroft AI is now abandon-ware.
+
 # Mycroft AI Voice Assistant running on Docker
 
 [![Mycroft AI version](https://img.shields.io/badge/Mycroft%20AI-21.2.2-green.svg?style=flat&logoColor=FFFFFF&color=87567)](https://mycroft.ai)
